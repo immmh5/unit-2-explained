@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاختبار الشامل — Unit 2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Cairo','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Cairo',sans-serif}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .3s ease}
+.opt{transition:all .15s}
+.opt:hover:not(:disabled){transform:translateX(4px);border-color:#8b5cf6}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.shake{animation:shake .4s}
+.bar{transition:width .4s}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="index.html" class="text-sm font-bold bg-white/15 px-3 py-2 rounded-full">← الرئيسية</a>
+    <h1 class="text-base md:text-lg font-bold">📝 الاختبار الشامل</h1>
+    <button onclick="toggleDarkMode()" class="bg-white/15 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 py-6">
+
+  <!-- Start -->
+  <div id="startScreen" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-lg text-center pop">
+    <div class="text-5xl mb-3">📝</div>
+    <h2 class="text-2xl font-extrabold mb-2">اختبار Unit 2 الشامل</h2>
+    <p class="text-slate-500 dark:text-slate-400 text-sm mb-5">15 سؤال تغطي الـ Classes 4 و 5 و 6 — بالإنجليزي مثل الاختبار الحقيقي 🎯</p>
+    <div class="grid grid-cols-3 gap-3 mb-6 text-xs">
+      <div class="bg-indigo-50 dark:bg-indigo-950/30 rounded-lg p-3"><b class="text-lg">5</b><br>أسئلة Class 4</div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-3"><b class="text-lg">5</b><br>أسئلة Class 5</div>
+      <div class="bg-amber-50 dark:bg-amber-950/30 rounded-lg p-3"><b class="text-lg">5</b><br>أسئلة Class 6</div>
+    </div>
+    <button onclick="startQuiz()" class="bg-gradient-to-r from-indigo-600 to-pink-600 text-white px-8 py-3 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform">ابدأ الاختبار 🚀</button>
+  </div>
+
+  <!-- Quiz -->
+  <div id="quizScreen" class="hidden">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="flex-1 h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+        <div id="progBar" class="bar h-full bg-gradient-to-l from-indigo-500 to-pink-500" style="width:0%"></div>
+      </div>
+      <span id="progText" class="text-xs font-bold whitespace-nowrap">0 / 15</span>
+    </div>
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 md:p-6 shadow-lg pop">
+      <div class="flex justify-between items-center mb-3">
+        <span id="qCat" class="text-[10px] font-bold px-2 py-1 rounded-full"></span>
+        <span class="text-[10px] text-slate-400 font-bold">SCORE: <span id="qScore">0</span></span>
+      </div>
+      <p id="qText" class="text-sm md:text-base font-semibold leading-relaxed mb-5"></p>
+      <div id="qOptions" class="space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div id="resultScreen" class="hidden pop">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-lg text-center">
+      <div id="resIcon" class="text-6xl mb-3"></div>
+      <h2 class="text-2xl font-extrabold mb-2">النتيجة النهائية</h2>
+      <div id="resScore" class="text-5xl font-extrabold mb-2"></div>
+      <p id="resMsg" class="text-slate-500 dark:text-slate-400 text-sm mb-5"></p>
+      <div id="resBreakdown" class="grid grid-cols-3 gap-3 mb-6 text-xs"></div>
+      <div class="flex gap-2 justify-center flex-wrap">
+        <button onclick="startQuiz()" class="bg-gradient-to-r from-indigo-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold">إعادة الاختبار 🔁</button>
+        <a href="index.html" class="bg-slate-100 dark:bg-slate-800 px-6 py-3 rounded-xl font-bold">الصفحة الرئيسية 🏠</a>
+      </div>
+    </div>
+    <!-- Review -->
+    <div id="review" class="mt-5 space-y-3"></div>
+  </div>
+
+</main>
+
+<script>
+const QUESTIONS = [
+  // CLASS 4
+  {cat:"Class 4", q:"What is the main difference between the engineering mindset and the 'creative/genius' mindset?",
+   opts:["Engineering uses science; genius uses intuition","Engineering demands evidence for every claim; genius relies on personal confidence","Engineering is faster; genius is slower","Engineering costs less; genius costs more"],
+   a:1, why:"The engineering mindset requires EVIDENCE (artefacts, reviews, tests, versions) for every claim — not 'trust me'."},
+  {cat:"Class 4", q:"A project's requirements are fixed and fully approved before any code is written. Any late change is refused. Which process model is this?",
+   opts:["Iterative","Incremental","Predictive (Waterfall)","Agile"],
+   a:2, why:"Requirements fixed + changes refused = Predictive (Waterfall)."},
+  {cat:"Class 4", q:"A team releases v1 with only 'transfer money', then adds 'bills', then 'loans'. Each release is usable by real customers. Which model?",
+   opts:["Iterative","Incremental","Hybrid","Predictive"],
+   a:1, why:"Usable slices delivered early = Incremental. (Iterative improves the same product; Incremental adds pieces.)"},
+  {cat:"Class 4", q:"Which pair of quality attributes describes: 'runs on any browser' and 'does not crash under 60 users'?",
+   opts:["Usability & Reliability","Portability & Reliability","Efficiency & Usability","Maintainability & Portability"],
+   a:1, why:"Portability = works in different environments (browsers). Reliability = works under load without crashing."},
+  {cat:"Class 4", q:"Before starting work, the team writes: approved case, allowed tools, evidence rules, and missing support. What is this?",
+   opts:["Project Charter","Prerequisite Readiness","Traceability Matrix","Change Request"],
+   a:1, why:"Readiness = case + allowed tools + evidence rules + readiness gaps, all written BEFORE starting."},
+  // CLASS 5
+  {cat:"Class 5", q:"Which of the following is a valid, measurable acceptance criterion?",
+   opts:["The app should be user-friendly","The system should work fast","Given a class of 30, when the teacher taps Save, the record is stored in under 2 seconds","The customer should be happy"],
+   a:2, why:"A criterion needs setup + action + observable result with a measurable boundary. Only option C is testable with a number."},
+  {cat:"Class 5", q:"In the traceability matrix, a requirement row has empty Design, Verify, and Evidence cells. What is this called?",
+   opts:["Orphan","Weak link","Gap","Propagation risk"],
+   a:2, why:"An empty cell in the matrix = GAP — a link is missing."},
+  {cat:"Class 5", q:"A test T-99 tests the login screen, but no requirement mentions login. What is T-99?",
+   opts:["Gap","Orphan","Weak link","Baseline"],
+   a:1, why:"An artefact (test/design) with no requirement = ORPHAN."},
+  {cat:"Class 5", q:"Which is NOT one of the four verification methods?",
+   opts:["Inspection","Analysis","Demonstration","Estimation"],
+   a:3, why:"The four methods are Inspection, Analysis, Demonstration, and Test. Estimation is not a verification method."},
+  {cat:"Class 5", q:"A requirement row has 5 ticks (source + design + 3 tests). If we change this requirement, five things could break. What risk is this?",
+   opts:["Weak link","Propagation risk","Gap","Orphan"],
+   a:1, why:"5 ticks in one row = PROPAGATION RISK — one change breaks many things."},
+  // CLASS 6
+  {cat:"Class 6", q:"What is a baseline?",
+   opts:["A guess about future requirements","A frozen, approved version of the requirements","A list of bugs found in testing","The final version of the product"],
+   a:1, why:"A baseline is a frozen, approved snapshot; it changes only through a formal Change Request."},
+  {cat:"Class 6", q:"A change request asks for a new feature. The source is the CEO, the value is cosmetic only, and it would force re-testing 3 screens. The best decision is:",
+   opts:["Accept — the CEO is the authority","Defer — maybe later","Reject — value does not justify cost/risk","Accept — always trust the CEO"],
+   a:2, why:"Value (cosmetic) does not justify the cost (re-testing 3 screens) → REJECT, regardless of who asked."},
+  {cat:"Class 6", q:"Which item must be included in a Decision Record?",
+   opts:["The rejected alternative and why","The entire source code","Every bug ever found","The customer's home address"],
+   a:0, why:"A Decision Record includes: decision, authority, criterion, REJECTED ALTERNATIVE, residual risk, version, reason."},
+  {cat:"Class 6", q:"The team decides to ACCEPT a change. After the decision, a risk still remains that cannot be fully eliminated. What is this called?",
+   opts:["Propagation risk","Residual risk","Weak link","Baseline risk"],
+   a:1, why:"Residual Risk = the risk that remains after the decision is made. It must always be recorded."},
+  {cat:"Class 6", q:"Change-Impact Analysis involves tracing affected lines, identifying new lines, planning verification, checking the deadline, and...",
+   opts:["firing the developers","flagging propagation risk and recording gaps","writing the final user manual","deleting the old baseline"],
+   a:1, why:"The 6 steps: trace lines, new lines, plan verification, check deadline, flag propagation risk, record gaps."}
+];
+
+let idx = 0, score = 0, catScore = {"Class 4":0,"Class 5":0,"Class 6":0};
+let answers = [];
+
+function startQuiz() {
+  idx = 0; score = 0; catScore = {"Class 4":0,"Class 5":0,"Class 6":0}; answers = [];
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = QUESTIONS[idx];
+  // shuffle options each time so the correct answer never sits in a fixed slot
+  const correctText = q.opts[q.a];
+  q._rendered = [...q.opts].sort(() => Math.random() - 0.5);
+  document.getElementById('progBar').style.width = (idx/QUESTIONS.length*100)+"%";
+  document.getElementById('progText').textContent = idx+" / "+QUESTIONS.length;
+  document.getElementById('qScore').textContent = score;
+  const cat = document.getElementById('qCat');
+  cat.textContent = q.cat;
+  cat.className = 'text-[10px] font-bold px-2 py-1 rounded-full ' +
+    (q.cat==="Class 4"?'bg-indigo-100 text-indigo-700 dark:bg-indigo-950/40 dark:text-indigo-300':
+     q.cat==="Class 5"?'bg-purple-100 text-purple-700 dark:bg-purple-950/40 dark:text-purple-300':
+     'bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300');
+  document.getElementById('qText').textContent = (idx+1)+". "+q.q;
+  const box = document.getElementById('qOptions');
+  box.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q._rendered.forEach((o,i)=>{
+    const b = document.createElement('button');
+    b.className = 'opt w-full text-right bg-slate-50 dark:bg-slate-800/50 border-2 border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm font-semibold flex gap-3 items-start';
+    b.innerHTML = `<span class="font-mono font-bold text-indigo-500 dark:text-indigo-400 flex-none">${letters[i]}</span><span>${o}</span>`;
+    b.onclick = ()=>answer(o, b, box);
+    box.appendChild(b);
+  });
+}
+
+function answer(picked, btn, box) {
+  Array.from(box.children).forEach(b=>b.disabled = true);
+  const q = QUESTIONS[idx];
+  const correctText = q.opts[q.a];
+  const correct = picked === correctText;
+  answers.push({q:q.q, picked, correct:correctText, why:q.why, ok:correct, cat:q.cat});
+  if (correct) {
+    score++; catScore[q.cat]++;
+    btn.classList.add('border-emerald-400','bg-emerald-50','dark:bg-emerald-950/30');
+  } else {
+    btn.classList.add('border-red-400','bg-red-50','dark:bg-red-950/30','shake');
+    Array.from(box.children).forEach(b=>{
+      if (b.textContent.includes(correctText)) b.classList.add('border-emerald-400','bg-emerald-50','dark:bg-emerald-950/30');
+    });
+  }
+  setTimeout(()=>{
+    idx++;
+    if (idx >= QUESTIONS.length) {
+      document.getElementById('progBar').style.width = "100%";
+      document.getElementById('progText').textContent = QUESTIONS.length+" / "+QUESTIONS.length;
+      showResult();
+    } else showQuestion();
+  }, 1400);
+}
+
+function showResult() {
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+  const pct = Math.round(score/QUESTIONS.length*100);
+  document.getElementById('resScore').textContent = score+" / "+QUESTIONS.length+"  ("+pct+"%)";
+  const icon = document.getElementById('resIcon'), msg = document.getElementById('resMsg');
+  if (pct >= 80) { icon.textContent = "🏆"; msg.textContent = "ممتاز! أنت جاهز للاختبار الحقيقي 🌟"; }
+  else if (pct >= 60) { icon.textContent = "👍"; msg.textContent = "جيد جداً! راجع الأسئلة الخاطئة تحت"; }
+  else if (pct >= 40) { icon.textContent = "📖"; msg.textContent = "لا بأس، راجع الدروس وحاول مرة ثانية"; }
+  else { icon.textContent = "💪"; msg.textContent = "محتاج مراجعة — اقرأ الدروس الثلاثة ثم أعد المحاولة"; }
+
+  document.getElementById('resBreakdown').innerHTML = `
+    <div class="bg-indigo-50 dark:bg-indigo-950/30 rounded-lg p-3"><b class="text-lg">${catScore["Class 4"]}/5</b><br>Class 4</div>
+    <div class="bg-purple-50 dark:bg-purple-950/30 rounded-lg p-3"><b class="text-lg">${catScore["Class 5"]}/5</b><br>Class 5</div>
+    <div class="bg-amber-50 dark:bg-amber-950/30 rounded-lg p-3"><b class="text-lg">${catScore["Class 6"]}/5</b><br>Class 6</div>`;
+
+  const rev = document.getElementById('review');
+  rev.innerHTML = '<h3 class="font-bold text-sm mb-2">📋 مراجعة الإجابات</h3>';
+  answers.forEach((a,i)=>{
+    const div = document.createElement('div');
+    div.className = 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 text-xs';
+    div.innerHTML = `
+      <div class="flex gap-2 items-start mb-2">
+        <span class="${a.ok?'text-emerald-500':'text-red-500'} text-lg flex-none">${a.ok?'✅':'❌'}</span>
+        <b class="leading-relaxed">${i+1}. ${a.q}</b>
+      </div>
+      <div class="pr-7 space-y-1 text-slate-500 dark:text-slate-400">
+        ${a.ok?'':`<p>إجابتك: <span class="text-red-500 font-semibold">${a.picked}</span></p>`}
+        <p>الصحيح: <span class="text-emerald-600 dark:text-emerald-400 font-semibold">${a.correct}</span></p>
+        <p>💡 ${a.why}</p>
+      </div>`;
+    rev.appendChild(div);
+  });
+}
+
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent='☀️';
+</script>
+</body>
+</html>

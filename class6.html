@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 6 — Review & Controlled Change</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Cairo','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Cairo',sans-serif}
+details summary{cursor:pointer}
+details[open] summary .arr{transform:rotate(90deg)}
+.arr{transition:transform .2s;display:inline-block}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .35s ease}
+.stamp{transform:rotate(-6deg)}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-amber-500 via-orange-600 to-red-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="text-2xl">🛡️</span>
+      <div><h1 class="text-base md:text-lg font-bold">Class 6 · Review</h1><p class="text-[11px] text-amber-100">& Controlled Change</p></div>
+    </a>
+    <button onclick="toggleDarkMode()" class="bg-white/15 hover:bg-white/25 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-l from-amber-500 via-orange-600 to-red-600 text-white rounded-2xl p-6 md:p-8 shadow-xl pop">
+    <div class="text-5xl mb-3">🛡️</div>
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Class 6: المتطلبات تتغير — هذا طبيعي! 🌊</h2>
+    <p class="text-amber-50 text-sm md:text-base leading-relaxed">
+      الموقف: طلب العميل تغيير. <b>السماح بالفوضى = خراب</b>. <b>رفض أي تغيير = منتج محتاج لكن عاجز</b>.
+      الحل: التغيير مسموح، بس <b>في عملية واضحة</b> — <b>Controlled Change</b>: نسجل، نحلل، نقرر، ونوثق.
+    </p>
+  </section>
+
+  <!-- TODDLER -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">🧸 الشرح كأني طفل سنة أولى</h3>
+    <div class="space-y-4 text-sm md:text-base leading-loose">
+      <p>أنت بنيت <b>قصر رمل</b> 🏰. صديقتك قالت: <b>"أضيف برج ثالث!"</b>. أضفته، فطلب آخر، وطلعت بعدها.. فجأة القصر انهار! 🏚️</p>
+      <p class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg">
+        <b>الحل:</b> قبل أي إضافة، أسأل 3 أسئلة:<br>
+        ① <b>من طلبها؟</b> (اللي يدفع له) → <b>Source</b><br>
+        ② <b>كم تستاهل؟</b> → <b>Value</b> (والمخاطر <b>too high? skip</b>)<br>
+        ③ <b>بكم تكلفني؟</b> → <b>Impact</b> (وش اللي سيتكسر؟)<br>
+        ثم أسجل القرار في <b>دفتر</b> عشان ما أنسى — هذا الـ <b>Decision Record</b>!
+      </p>
+    </div>
+  </section>
+
+  <!-- OBJ 1: BASELINE -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-amber-500 mb-1">OBJECTIVE 1</div>
+    <h3 class="text-xl font-bold mb-4">🧊 الـ Baseline: "الصورة المجمدة" (The Frozen Version)</h3>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <p class="text-sm leading-relaxed mb-3">الـ <b>Baseline</b> هي نسخة <b>معتمدة ومجمّدة</b> من المتطلبات. من اللحظة اللي تتجمد فيها:</p>
+        <ul class="space-y-2 text-sm">
+          <li class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg">✅ <b>مسموح</b> نقول "اللون أزرق" وننسخها ونعدلها — نحتفظ بالقديم</li>
+          <li class="bg-red-50 dark:bg-red-950/30 p-3 rounded-lg">⛔ <b>ممنوع</b> نمسح "اللون أزرق" ونكتب "اللون الأحمر" بدون عملية — هذا <b>uncontrolled change</b></li>
+        </ul>
+        <p class="text-xs text-slate-500 mt-3">القاعدة: <b>الخط الأساس يتجمد، بس الـ Change Request يقدر يكسر الثلج — بشكل رسمي</b>.</p>
+      </div>
+      <div class="bg-gradient-to-br from-sky-100 to-blue-100 dark:from-sky-950/40 dark:to-blue-950/40 rounded-xl p-5 flex flex-col items-center justify-center text-center">
+        <div class="text-4xl mb-2">🧊📸</div>
+        <b class="text-sm">BASELINE</b>
+        <p class="text-[11px] text-slate-500 mt-1">A frozen, approved snapshot.<br>أي تعديل → Change Request</p>
+        <div class="mt-3 flex gap-2 items-center text-xs font-bold">
+          <span class="bg-emerald-600 text-white px-3 py-1 rounded-full">v1.0 معتمدة</span>
+          <span>→</span>
+          <span class="bg-amber-500 text-white px-3 py-1 rounded-full">CR-001?</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJ 2: REVIEW -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-amber-500 mb-1">OBJECTIVE 2</div>
+    <h3 class="text-xl font-bold mb-4">🔍 مراجعة المتطلبات (Requirements Review)</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="border-2 border-sky-300 dark:border-sky-700 rounded-xl p-4">
+        <b class="text-sky-700 dark:text-sky-300 text-sm">✅ ما يحتاجه فريق المراجعة:</b>
+        <ul class="text-xs mt-2 space-y-1">
+          <li>• Baseline (النسخة المعتمدة)</li>
+          <li>• Traceability Matrix (المصفوفة)</li>
+          <li>• دليل على التحقق (verification evidence)</li>
+          <li>• معايير القبول (acceptance criteria)</li>
+          <li>• Authority (صلاحية من يقدر يعتمد)</li>
+          <li>• Right people in the room</li>
+        </ul>
+      </div>
+      <div class="border-2 border-red-300 dark:border-red-700 rounded-xl p-4">
+        <b class="text-red-700 dark:text-red-300 text-sm">❌ فشل المراجعة لو:</b>
+        <ul class="text-xs mt-2 space-y-1">
+          <li>• The exact line set is unknown (ما ندري وش نخترع)</li>
+          <li>• One person decides alone (شخص واحد يقرر)</li>
+          <li>• Evidence is missing (ما فيه دليل)</li>
+          <li>• Rushed or only after delivery (مستعجلين أو متأخرين)</li>
+          <li>• Devs not represented (المطورين مو موجودين)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJ 3: CR + IMPACT -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-amber-500 mb-1">OBJECTIVES 3 & 4</div>
+    <h3 class="text-xl font-bold mb-4">📋 طلب التغيير + تحليل الأثر (CR + Impact Analysis)</h3>
+
+    <h4 class="font-bold mb-3 text-sm">الـ Change Request يحتوي 6 أجزاء:</h4>
+    <div class="grid md:grid-cols-2 gap-3 mb-6">
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">1️⃣ The change</b><p class="text-[11px] text-slate-500 mt-1">ما المطلوب بالظبط؟</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">2️⃣ Source</b><p class="text-[11px] text-slate-500 mt-1">من الطلب؟ الجهة المخولة؟</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">3️⃣ Value</b><p class="text-[11px] text-slate-500 mt-1">وش تستفيد؟ للمشروع ولا للمستخدم؟</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">4️⃣ Urgency</b><p class="text-[11px] text-slate-500 mt-1">عاجل أو يمدينا نأجل؟</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">5️⃣ Affected requirements</b><p class="text-[11px] text-slate-500 mt-1">وش المتطلبات اللي تتأثر؟ (تتبعها بالـ ID)</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3"><b class="text-sm">6️⃣ Reason to reconsider</b><p class="text-[11px] text-slate-500 mt-1">ليش نعيد النظر فيها الاكتفائية؟</p></div>
+    </div>
+
+    <h4 class="font-bold mb-3 text-sm">تحليل الأثر (Change-Impact Analysis) — اتبع الـ 6 خطوات:</h4>
+    <div class="space-y-2">
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">1</span><div><b class="text-sm">Trace the affected lines</b><p class="text-[11px] text-slate-500">تتبع الأسطر المتأثرة في المصفوفة (استخدم الـ ID)</p></div></div>
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">2</span><div><b class="text-sm">Identify new lines</b><p class="text-[11px] text-slate-500">حدد الأسطر الجديدة المطلوبة</p></div></div>
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">3</span><div><b class="text-sm">Plan verification</b><p class="text-[11px] text-slate-500">خطط لطريقة التحقق + الدليل المطلوب</p></div></div>
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">4</span><div><b class="text-sm">Check the deadline</b><p class="text-[11px] text-slate-500">تأكد من الموعد النهائي (هل يمدينا؟)</p></div></div>
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">5</span><div><b class="text-sm">Flag propagation risk</b><p class="text-[11px] text-slate-500">سجل خطر الانتشار (السطر له 5 تيكات؟ انتبه!)</p></div></div>
+      <div class="flex gap-3 items-start bg-slate-50 dark:bg-slate-800 p-3 rounded-lg"><span class="bg-amber-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-none">6</span><div><b class="text-sm">Record gaps / do-not-understand items</b><p class="text-[11px] text-slate-500">سجل الفجوات أو النقاط الغامضة (gaps)</p></div></div>
+    </div>
+  </section>
+
+  <!-- OBJ 5: DECISION -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-amber-500 mb-1">OBJECTIVES 5 & 6</div>
+    <h3 class="text-xl font-bold mb-4">⚖️ القرارات الثلاثة + السجل (Decision Record)</h3>
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-emerald-50 dark:bg-emerald-950/30 border-2 border-emerald-300 dark:border-emerald-700 rounded-xl p-4 text-center">
+        <div class="text-3xl mb-2 stamp">✅</div>
+        <b class="text-emerald-700 dark:text-emerald-300">ACCEPT</b>
+        <p class="text-xs mt-2 text-slate-500">التغيير مقبول، يدخل في النسخة الجديدة. <b>القيمة تبرر التكلفة والمخاطرة</b>.</p>
+      </div>
+      <div class="bg-amber-50 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-4 text-center">
+        <div class="text-3xl mb-2 stamp">⏸️</div>
+        <b class="text-amber-700 dark:text-amber-300">DEFER</b>
+        <p class="text-xs mt-2 text-slate-500">التغيير صالح بس <b>مو الحين</b>. نأجله للإصدار القادم.</p>
+      </div>
+      <div class="bg-red-50 dark:bg-red-950/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-4 text-center">
+        <div class="text-3xl mb-2 stamp">🚫</div>
+        <b class="text-red-700 dark:text-red-300">REJECT</b>
+        <p class="text-xs mt-2 text-slate-500">التغيير مرفوض — <b>القيمة لا تبرر التكلفة/المخاطرة</b>، أو المطلوب غير مخوّل.</p>
+      </div>
+    </div>
+
+    <h4 class="font-bold mb-3 text-sm">الـ Decision Record يجب أن يتضمن:</h4>
+    <div class="flex flex-wrap gap-2 text-xs">
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Decision (Accept/Defer/Reject)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Authority (من اتخذ القرار)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Criterion (المعيار المستخدم)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Rejected alternative (الخيار المرفوض)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Risk left (المخاطرة المتبقية)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Version (الإصدار الجديد)</span>
+      <span class="bg-slate-100 dark:bg-slate-800 px-3 py-2 rounded-full">Reason (السبب)</span>
+    </div>
+
+    <div class="mt-6 bg-pink-50 dark:bg-pink-950/30 border-r-4 border-pink-500 p-4 rounded-lg">
+      <b>⚠️ Residual Risk (المخاطرة المتبقية):</b> المخاطرة اللي <b>تبقى بعد</b> اتخاذ القرار. ما فيه قرار بدون مخاطرة — حتى Accept يخليك تواجه مخاطر. <b>اكتبها دائماً</b>!
+    </div>
+
+    <div class="mt-4 bg-sky-50 dark:bg-sky-950/30 p-4 rounded-lg text-sm">
+      <b>Rebaseline (إعادة التجميد):</b> لما يتم اعتماد تغييرات، ننشئ <b>Baseline جديد</b> (v2.0) — النسخة القديمة <b>تبقى محفوظة</b> عشان نقدر نرجع لها أو نعرف وش تغير.
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🛠️ تطبيق عملي</h3>
+    <div class="space-y-3">
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> سؤال 1: ليش <b>الخوف من التغيير</b> يستفز المتطلبات للانهيار؟</summary>
+        <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <p class="text-xs">لأن رفض أي تغيير = <b>تتجاهل الواقع</b> (الناس تتغير، الأعمال تتغير). المنتج الناتج يكون <b>"محتاج لكن عاجز"</b> — ما يخدم أحد، ومحد يستخدمه.<br>المخرج: <b>Controlled Change</b> — التغيير مسموح بس عبر عملية موثقة.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> سؤال 2: وش يحتوي تحليل الأثر (Impact Analysis)؟</summary>
+        <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <p class="text-xs">① Trace affected lines ② Identify new lines ③ Plan verification + evidence ④ Check deadline ⑤ Flag propagation risk ⑥ Record gaps / unclear items.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> سؤال 3: ليش نسجل الـ Rejected alternative؟</summary>
+        <div class="mt-3 text-sm text-slate-600 dark:text-slate-300 space-y-2">
+          <p class="text-xs">عشان ما يطلع أحد بعدها ويقترح نفس الشيء من جديد — نسجل <b>وش رفضنا، ولماذا</b>، فنوفر وقت الجدال، ونحمي الفريق من إعادة النقاش في المستقبل.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- EXAM TRICKS -->
+  <section class="bg-gradient-to-l from-amber-400 to-red-500 text-white rounded-2xl p-6 shadow-xl">
+    <h3 class="text-xl font-bold mb-4">🔥 حيل الاختبار (Exam Hacks)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "frozen version", "approved snapshot", "approved set of requirements" → <b>الجواب: Baseline</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "change, source, value, urgency, affected, reason" → <b>الجواب: Change Request (CR)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "accept / defer / reject" → <b>الجواب: Change Control Authority decision</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "trace lines, new lines, verification, deadline, propagation" → <b>الجواب: Change-Impact Analysis</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "risk that remains after the decision" → <b>الجواب: Residual Risk</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "new approved version, old kept" → <b>الجواب: Rebaseline</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "who can approve changes" → <b>الجواب: Change Control Authority (CCA)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "5 ticks in one row" → <b>الجواب: Propagation risk (سطر خطر!)</b></div>
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">📖 المصطلحات الأساسية (Key Terms)</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead><tr class="bg-amber-600 text-white text-xs"><th class="p-2 text-right">English Term</th><th class="p-2 text-right">بالعربي</th><th class="p-2 text-right">Simple Definition</th></tr></thead>
+        <tbody class="text-xs">
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Baseline</td><td class="p-2">خط الأساس</td><td class="p-2 text-slate-500 dark:text-slate-400">A frozen, approved version; changes only via Change Request.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Change Request (CR)</td><td class="p-2">طلب تغيير</td><td class="p-2 text-slate-500 dark:text-slate-400">A formal request to modify a baselined requirement.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Change-Impact Analysis</td><td class="p-2">تحليل أثر التغيير</td><td class="p-2 text-slate-500 dark:text-slate-400">Finding what the change touches, and what it would cost or break.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Change Control Authority</td><td class="p-2">جهة التحكم بالتغيير</td><td class="p-2 text-slate-500 dark:text-slate-400">The person or group that decides Accept / Defer / Reject.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Decision Record</td><td class="p-2">سجل القرار</td><td class="p-2 text-slate-500 dark:text-slate-400">The written record of the decision and why it was made.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Residual Risk</td><td class="p-2">المخاطرة المتبقية</td><td class="p-2 text-slate-500 dark:text-slate-400">The risk that remains after the decision is made.</td></tr>
+          <tr><td class="p-2 font-bold">Rebaseline</td><td class="p-2">إعادة التجميد</td><td class="p-2 text-slate-500 dark:text-slate-400">Creating a new approved baseline after accepted changes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GAME LINK -->
+  <a href="games/game6.html" class="block bg-gradient-to-r from-amber-500 to-red-600 text-white rounded-2xl p-6 shadow-xl text-center hover:scale-[1.02] transition-transform">
+    <div class="text-4xl mb-2">⚖️</div>
+    <h3 class="text-xl font-bold mb-1">العب Change Judge!</h3>
+    <p class="text-amber-50 text-xs">أنت القاضي! اقرأ طلبات التغيير، حلل الأثر، واطلق القرار: Accept أو Defer أو Reject؟ ⚡</p>
+  </a>
+
+  <div class="flex justify-between items-center pt-4">
+    <a href="class5.html" class="text-amber-600 dark:text-amber-400 text-sm font-bold">→ الدرس السابق</a>
+    <a href="quiz.html" class="bg-amber-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-amber-700 transition">الاختبار الشامل ←</a>
+  </div>
+
+</main>
+
+<script>
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent='☀️';
+</script>
+</body>
+</html>

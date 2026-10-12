@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traceability Detective — Class 5 Game</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Cairo','sans-serif']}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Cairo',sans-serif}
+@keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+.pop{animation:pop .3s ease}
+.cell{transition:all .2s;cursor:pointer}
+.cell:hover{transform:scale(1.05);z-index:5}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.shake{animation:shake .4s}
+.tick{width:14px;height:14px;border-radius:50%;display:inline-block;margin:1px}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-purple-600 to-pink-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+    <a href="../class5.html" class="text-sm font-bold bg-white/15 px-3 py-2 rounded-full">← الدرس</a>
+    <h1 class="text-base md:text-lg font-bold">🕵️ Traceability Detective</h1>
+    <button onclick="toggleDarkMode()" class="bg-white/15 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-6">
+
+  <!-- Status bar -->
+  <div class="flex gap-3 justify-between mb-5 flex-wrap">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 flex-1 text-center min-w-[100px]">
+      <div class="text-[10px] text-purple-500 font-bold">CASE</div>
+      <div id="level" class="text-lg font-extrabold leading-none">1 / 6</div>
+    </div>
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 flex-1 text-center min-w-[100px]">
+      <div class="text-[10px] text-emerald-500 font-bold">SOLVED</div>
+      <div id="score" class="text-lg font-extrabold text-emerald-500 leading-none">0</div>
+    </div>
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 flex-1 text-center min-w-[100px]">
+      <div class="text-[10px] text-amber-500 font-bold">TIME ⏱️</div>
+      <div id="timer" class="text-lg font-extrabold text-amber-500 leading-none">60</div>
+    </div>
+  </div>
+
+  <!-- Mission -->
+  <div class="bg-gradient-to-l from-purple-600 to-pink-600 text-white rounded-2xl p-5 shadow-lg mb-5 pop">
+    <div class="text-[11px] text-purple-100 font-bold mb-1">📋 CASE FILE</div>
+    <p id="mission" class="text-sm md:text-base leading-relaxed"></p>
+  </div>
+
+  <!-- Traceability Matrix -->
+  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 md:p-5 shadow-md mb-5 overflow-x-auto">
+    <h3 class="text-sm font-bold mb-3">🔗 The Traceability Matrix — اضغط على الخانة اللي تشتبه فيها!</h3>
+    <table class="w-full text-xs border-collapse min-w-[640px]">
+      <thead><tr class="bg-purple-600 text-white">
+        <th class="p-2 text-right">Req ID</th><th class="p-2 text-right">Requirement</th><th class="p-2 text-right">Source + Authority</th>
+        <th class="p-2 text-right">Design</th><th class="p-2 text-right">Verify</th><th class="p-2 text-right">Evidence</th>
+      </tr></thead>
+      <tbody id="matrix"></tbody>
+    </table>
+  </div>
+
+  <!-- Answer options -->
+  <div id="options" class="grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+
+  <!-- Feedback -->
+  <div id="feedback" class="hidden mt-5 rounded-2xl p-5 pop"></div>
+
+</main>
+
+<script>
+const CASES = [
+  {
+    mission: "REQ-11: 'Export report'. المدير وافق عليها، لكن الفريق نسي يربطها بأي تصميم أو اختبار. ايش نوع المشكلة؟",
+    rows:[
+      {id:"REQ-02",req:"Save attendance",src:"Head teacher ✅",design:"DB module ✅",verify:"Test ✅",evidence:"T-02 ✅",cls:""},
+      {id:"REQ-07",req:"Notify guardians",src:"Head teacher ✅",design:"SMS gateway ✅",verify:"Demonstration ✅",evidence:"D-07 ✅",cls:""},
+      {id:"REQ-11",req:"Export report",src:"Principal ✅",design:"—",verify:"—",evidence:"???",cls:"text-red-500 font-bold"}
+    ],
+    answer:"Gap",
+    why:"السطر فيه خانات فارغة (Design, Verify, Evidence) → هذا GAP: متطلب بلا دليل على أنه يشتغل."
+  },
+  {
+    mission: "وجد الفريق اختبار اسمه T-99 يختبر 'تسجيل الدخول' — بس مافي أي متطلب يتكلم عن تسجيل الدخول! ايش نوع المشكلة؟",
+    rows:[
+      {id:"REQ-02",req:"Save attendance",src:"Head teacher ✅",design:"DB module ✅",verify:"Test ✅",evidence:"T-02 ✅",cls:""},
+      {id:"—",req:"(no requirement)",src:"—",design:"Login screen ✅",verify:"Test ✅",evidence:"T-99 ✅",cls:"text-red-500 font-bold"},
+      {id:"REQ-07",req:"Notify guardians",src:"Head teacher ✅",design:"SMS gateway ✅",verify:"Demonstration ✅",evidence:"D-07 ✅",cls:""}
+    ],
+    answer:"Orphan",
+    why:"T-99 (اختبار) ما يرتبط بأي متطلب → هذا ORPHAN: شغل بلا سبب أو متطلب بلا تصميم/اختبار."
+  },
+  {
+    mission: "المراجع يقرأ REQ-07: يقول 'تم اختبارها'، بس ما لقى نتيجة، ولا سجل، ولا حتى رقم. مجرد كلمة 'اختبرناها'. ايش نوع المشكلة؟",
+    rows:[
+      {id:"REQ-02",req:"Save attendance",src:"Head teacher ✅",design:"DB module ✅",verify:"Test ✅",evidence:"T-02 ✅",cls:""},
+      {id:"REQ-07",req:"Notify guardians",src:"Head teacher ✅",design:"SMS gateway ✅",verify:"Test ✅",evidence:"'tested' ⚠️",cls:"text-amber-500 font-bold"},
+      {id:"REQ-11",req:"Export report",src:"Principal ✅",design:"Report module ✅",verify:"Inspection ✅",evidence:"I-11 ✅",cls:""}
+    ],
+    answer:"Weak link",
+    why:"الرابط موجود بس ما يثبت شيئاً — كلمة 'tested' بدون نتيجة أو سجل → WEAK LINK."
+  },
+  {
+    mission: "REQ-02 له 5 تيكات: المصدر + التصميم + 3 اختبارات مختلفة. لو غيّرنا هذا المتطلب، خمسة أشياء ستنكسر! ايش اسم المخاطرة؟",
+    rows:[
+      {id:"REQ-02",req:"Save attendance",src:"Head teacher ✅",design:"DB module ✅",verify:"Test + Test + Test ✅✅✅",evidence:"T-02a, T-02b, T-02c ✅",cls:"text-pink-500 font-bold"},
+      {id:"REQ-07",req:"Notify guardians",src:"Head teacher ✅",design:"SMS gateway ✅",verify:"Demonstration ✅",evidence:"D-07 ✅",cls:""},
+      {id:"REQ-11",req:"Export report",src:"Principal ✅",design:"Report module ✅",verify:"Inspection ✅",evidence:"I-11 ✅",cls:""}
+    ],
+    answer:"Propagation risk",
+    why:"السطر ملعوب بـ 5 تيكات — تغيير واحد يكسر خمسة أشياء → PROPAGATION RISK."
+  },
+  {
+    mission: "معيار القبول للمتطلب مكتوب: 'النظام سريع وسهل الاستخدام'. هل هذا معيار قبول صحيح؟",
+    rows:[
+      {id:"REQ-02",req:"Save attendance",src:"Head teacher ✅",design:"'fast & friendly' ⚠️",verify:"???",evidence:"???",cls:"text-red-500 font-bold"}
+    ],
+    answer:"Not a criterion",
+    why:"'سريع وسهل' غير قابل للقياس (not measurable) — لا رقم، لا حد، أي أحد يجادل. لازم مثل: 'under 2 seconds'."
+  },
+  {
+    mission: "REQ-07: 'Notify guardians'. تم ربطه بالمصدر (Head teacher) ولديه اختبار D-07 يثبت أنه يشتغل. هذا مثال على...",
+    rows:[
+      {id:"REQ-07",req:"Notify guardians",src:"Head teacher ✅",design:"SMS gateway ✅",verify:"Demonstration ✅",evidence:"D-07 ✅",cls:"text-emerald-500 font-bold"}
+    ],
+    answer:"Traceability",
+    why:"متطلبه مربوط للأمام (forward) بالدليل وللخلف (backward) بالمصدر → هذا تعريف TRACEABILITY."
+  }
+];
+
+const ALL_OPTIONS = ["Gap","Orphan","Weak link","Propagation risk","Not a criterion","Traceability"];
+let level = 0, score = 0, timeLeft = 60, timerId = null, answered = false;
+
+function renderCase() {
+  answered = false;
+  const c = CASES[level];
+  document.getElementById('level').textContent = (level+1)+" / "+CASES.length;
+  document.getElementById('mission').textContent = c.mission;
+
+  const tb = document.getElementById('matrix');
+  tb.innerHTML = '';
+  c.rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.className = 'border-b border-slate-200 dark:border-slate-800 '+(r.cls||'');
+    tr.innerHTML = `<td class="p-2 font-mono font-bold">${r.id}</td><td class="p-2">${r.req}</td><td class="p-2">${r.src}</td><td class="p-2">${r.design}</td><td class="p-2">${r.verify}</td><td class="p-2">${r.evidence}</td>`;
+    tb.appendChild(tr);
+  });
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  const pool = new Set([c.answer]);
+  while (pool.size < 4) pool.add(ALL_OPTIONS[Math.floor(Math.random()*ALL_OPTIONS.length)]);
+  Array.from(pool).sort(()=>Math.random()-0.5).forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'cell bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 hover:border-purple-400 rounded-xl p-3 text-sm font-bold';
+    b.textContent = o;
+    b.onclick = ()=>check(o, b);
+    opts.appendChild(b);
+  });
+
+  document.getElementById('feedback').classList.add('hidden');
+}
+
+function check(choice, btn) {
+  if (answered) return;
+  answered = true;
+  const c = CASES[level];
+  const fb = document.getElementById('feedback');
+  if (choice === c.answer) {
+    score++;
+    document.getElementById('score').textContent = score;
+    btn.classList.add('border-emerald-400','bg-emerald-50','dark:bg-emerald-950/30');
+    fb.className = 'mt-5 rounded-2xl p-5 pop bg-emerald-50 dark:bg-emerald-950/30 border-2 border-emerald-400';
+    fb.innerHTML = `<div class="text-3xl mb-1">🎯</div><b class="text-emerald-700 dark:text-emerald-300">إصابة! المحقق الماهر</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">${c.why}</p>`;
+  } else {
+    btn.classList.add('border-red-400','shake');
+    fb.className = 'mt-5 rounded-2xl p-5 pop bg-red-50 dark:bg-red-950/30 border-2 border-red-400';
+    fb.innerHTML = `<div class="text-3xl mb-1">💥</div><b class="text-red-700 dark:text-red-300">خطأ! الجواب الصح: ${c.answer}</b><p class="text-sm mt-2 text-slate-600 dark:text-slate-300">${c.why}</p>`;
+  }
+  setTimeout(()=>{
+    level++;
+    if (level >= CASES.length) {
+      clearInterval(timerId);
+      fb.className = 'mt-5 rounded-2xl p-5 pop bg-gradient-to-l from-purple-600 to-pink-600 text-white';
+      fb.innerHTML = `<div class="text-4xl mb-2">🏆</div><b class="text-xl">اكتملت كل القضايا!</b><p class="mt-2">حللت ${score} من ${CASES.length} قضية بشكل صحيح. ${score>=5?'🌟 ممتاز! أنت محقق محترف!':score>=3?'👍 جيد، راجع الجدول مرة ثانية':'💪 تابع المحاولة، راجع الدرس'}</p><div class="flex gap-2 justify-center mt-4"><a href="../class5.html" class="bg-white/20 px-4 py-2 rounded-full text-sm font-bold">📖 الدرس</a><button onclick="restart()" class="bg-white text-purple-700 px-4 py-2 rounded-full text-sm font-bold">العب ثانية</button></div>`;
+      return;
+    }
+    renderCase();
+  }, 2600);
+}
+
+function tick() {
+  timeLeft--;
+  document.getElementById('timer').textContent = timeLeft;
+  if (timeLeft <= 0) {
+    clearInterval(timerId);
+    const fb = document.getElementById('feedback');
+    fb.className = 'mt-5 rounded-2xl p-5 pop bg-amber-50 dark:bg-amber-950/30 border-2 border-amber-400';
+    fb.innerHTML = `<b>⏰ انتهى الوقت!</b><p class="text-sm mt-2">حللت ${score} قضية. <button onclick="restart()" class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-bold mt-2">حاول مرة ثانية</button></p>`;
+  }
+}
+
+function restart() {
+  level = 0; score = 0; timeLeft = 60;
+  document.getElementById('score').textContent = 0;
+  document.getElementById('timer').textContent = 60;
+  clearInterval(timerId);
+  timerId = setInterval(tick, 1000);
+  renderCase();
+}
+
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent='☀️';
+
+renderCase();
+timerId = setInterval(tick, 1000);
+</script>
+</body>
+</html>
