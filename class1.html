@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 1 — العقلية الهندسية والجاهزية | Software Engineering</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Cairo', 'sans-serif'] } } } }</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Cairo', sans-serif; }
+  .pop { animation: pop .5s cubic-bezier(.17,.67,.35,1.2); }
+  @keyframes pop { 0% { transform: scale(.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  details summary{cursor:pointer}
+  details[open] summary .arr{transform:rotate(90deg)}
+  .arr{transition:transform .2s;display:inline-block}
+  .chip{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-indigo-600 via-purple-600 to-fuchsia-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl">🎓</span>
+      <div><h1 class="text-lg md:text-xl font-bold">Class 1 — Engineering Mindset & Readiness</h1><p class="text-[11px] md:text-xs text-indigo-100">Unit 1 · Lifecycle & Process Models</p></div>
+    </div>
+    <button onclick="toggleDarkMode()" class="bg-white/15 hover:bg-white/25 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-l from-indigo-500 via-purple-600 to-fuchsia-600 text-white rounded-2xl p-6 md:p-8 shadow-xl pop">
+    <div class="text-5xl mb-3">🧠</div>
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Class 1: العقلية الهندسية والجاهزية</h2>
+    <p class="text-indigo-100 text-sm md:text-base leading-relaxed">
+      السؤال الجوهري للدرس كله: <b>متى يكون الكود الذي يشتغل غير كافٍ؟</b> 🤔 — الكود يشغّل الميزة ويعطيك النتيجة المتوقعة... هل هذا دليل كافٍ على أن البرنامج <b>جاهز للاستخدام الحقيقي</b>؟ الجواب: <b>لا</b>! في هذا الدرس ستكتشف كل الأشياء الثانية اللي على المهندس يتأكد منها.
+    </p>
+  </section>
+
+  <!-- QUICK SUMMARY -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">⭐ الملخص السريع (الترتيب المنطقي للدرس)</h3>
+    <ol class="space-y-3">
+      <li class="flex gap-3 bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+        <p class="text-sm">البرمجة تخلي الكود يشتغل بس — أما <b>Software Engineering</b> فتهتم بـ <b>النظام كامل</b> (Code + Data + People + ...) و<b>قيمته مع الزمن</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+        <p class="text-sm">الهندسة مع الزمن تعني: تخطط لـ <b>CHANGE</b> (التغيير)، وتفحص <b>QUALITY</b> (الجودة)، وتُظهر <b>EVIDENCE</b> (الدليل).</p>
+      </li>
+      <li class="flex gap-3 bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-pink-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+        <p class="text-sm">"I think it works" ليس دليلاً — <b>Evidence</b> لازم يكون شيء يقدر <b>شخص ثاني يفحصه</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-teal-50 dark:bg-teal-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">4</span>
+        <p class="text-sm">قبل ما تحدد المشكلة، افحص <b>Prerequisite Readiness</b>: <b>Approved case</b> + <b>Approved toolchain</b> + <b>Evidence rules</b> + <b>Readiness gap</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center">5</span>
+        <p class="text-sm">بعدها عرّف <b>Bounded Engineering Problem</b>: <b>User need</b> + <b>Stakeholder value</b> + <b>Credible success signal</b> + <b>Boundary</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-rose-50 dark:bg-rose-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center justify-center">6</span>
+        <p class="text-sm"><b>Ready ≠ Confident</b> — الجاهزية ليست الثقة! الجاهزية حقائق مكتوبة وواضحة.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- TODDLER EXPLAINER -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">🧸 الشرح كأني طفل سنة أولى</h3>
+    <div class="space-y-4 text-sm md:text-base leading-loose">
+      <p>تخيلك بنيت <b>برج مكعبات</b> 🧱. أنت فرحان لأنه واقف وما انكسر. هل هذا يخليه "جاهز للناس"؟</p>
+      <ul class="space-y-3 mr-4">
+        <li class="bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg"><b>① الكود (Code):</b> المكعبات نفسها — هل البرج واقف؟ ✅ واقف. هذا اللي يفكر فيه المبرمج.</li>
+        <li class="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg"><b>② النظام (System):</b> البرج + الأرض اللي واقف عليها + يد أخوك الصغير اللي بيدهدها + القواعد (محد يلمسه) — <b>كل هذا جزء من "الشيء"</b>.</li>
+        <li class="bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg"><b>③ القيمة (Value):</b> هل أحد فعلاً يستمتع بالبرج أو يستفيد منه؟ هل فرحت أخوك الصغير لما شافه؟</li>
+      </ul>
+      <p class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg border-r-4 border-amber-400">
+        <b>الخلاصة:</b> المبرمج يفكر في "المكعبات" فقط. <b>المهندس (Engineer)</b> يفكر في المكعبات + الأرض + الناس + القواعد + المستقبل — <b>وش يصير لو حاب يزودون دور ثاني؟</b> لازم تبنيه من البداية بطريقة تتحمل التغيير!
+      </p>
+    </div>
+  </section>
+
+  <!-- LEARNING OBJECTIVES -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🎯 أهداف الدرس (Learning Objectives)</h3>
+    <div class="space-y-3">
+      <div class="border-r-4 border-indigo-500 bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg text-sm"><b>1)</b> أميّز بين مهام البرمجة ومسؤوليات <b>Software Engineering</b> عبر أربعة محاور: <b>الزمن (Time)</b>، <b>الناس (People)</b>، <b>التغيير (Change)</b>، و<b>المخاطرة (Risk)</b>.</div>
+      <div class="border-r-4 border-purple-500 bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg text-sm"><b>2)</b> أُقيّم الجاهزية المسبقة (<b>Prerequisite Readiness</b>) باستخدام قواعد: الـ <b>approved case</b>، الـ <b>toolchain</b>، و<b>قواعد الدليل (evidence rules)</b>.</div>
+      <div class="border-r-4 border-pink-500 bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg text-sm"><b>3)</b> أُعرّف مشكلة هندسية واحدة محدودة (<b>Bounded Engineering Problem</b>): حاجة المستخدم، <b>Stakeholder value</b>، و<b>إشارة نجاح موثوقة (credible success signal)</b>.</div>
+    </div>
+  </section>
+
+  <!-- OBJ 1: Code -> System -> Value -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">OBJECTIVE 1</div>
+    <h3 class="text-xl font-bold mb-4">🧩 من الكود إلى القيمة (Code → System → Value)</h3>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-xl text-center">
+        <div class="text-3xl mb-2">💻</div>
+        <div class="font-bold text-indigo-700 dark:text-indigo-300">1 · CODE</div>
+        <p class="text-xs mt-2">البرمجة تنشئ كود أو تعدله عشان الميزة تشتغل. <b>Construct</b> (بناء).</p>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-xl text-center">
+        <div class="text-3xl mb-2">⚙️</div>
+        <div class="font-bold text-purple-700 dark:text-purple-300">2 · SYSTEM</div>
+        <p class="text-xs mt-2">البرنامج أكبر من الكود — هو <b>نظام من أجزاء متصلة</b>.</p>
+      </div>
+      <div class="bg-pink-50 dark:bg-pink-950/30 p-4 rounded-xl text-center">
+        <div class="text-3xl mb-2">⭐</div>
+        <div class="font-bold text-pink-700 dark:text-pink-300">3 · VALUE</div>
+        <p class="text-xs mt-2">الهدف هو <b>قيمة مستدامة للمستفيدين</b> (Sustained stakeholder value).</p>
+      </div>
+    </div>
+
+    <h4 class="font-bold mb-3 text-sm">أجزاء النظام السبعة (SYSTEM PARTS) — احفظها بالإنجليزي:</h4>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">📜</div><b class="text-sm">Code</b><p class="text-[10px] text-slate-500">instructions — التعليمات</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">🗄️</div><b class="text-sm">Data</b><p class="text-[10px] text-slate-500">information — المعلومات</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">🔌</div><b class="text-sm">Interfaces</b><p class="text-[10px] text-slate-500">connections — الاتصالات</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">👥</div><b class="text-sm">People</b><p class="text-[10px] text-slate-500">users & team — المستخدمين والفريق</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">📋</div><b class="text-sm">Procedures</b><p class="text-[10px] text-slate-500">steps & rules — خطوات وقواعد</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">🧰</div><b class="text-sm">Dependencies</b><p class="text-[10px] text-slate-500">other tools — أدوات خارجية</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-2xl mb-1">🌐</div><b class="text-sm">Operating Conditions</b><p class="text-[10px] text-slate-500">where it runs — بيئة التشغيل</p></div>
+      <div class="border border-indigo-300 dark:border-indigo-700 rounded-lg p-3 text-center bg-indigo-50/50 dark:bg-indigo-950/20"><div class="text-2xl mb-1">🔗</div><b class="text-sm">Evidence</b><p class="text-[10px] text-slate-500">الدليل الذي يربطها كلها</p></div>
+    </div>
+
+    <div class="mt-4 bg-slate-100 dark:bg-slate-800 p-4 rounded-lg text-center text-sm">
+      👁️ <b>النظرة الهندسية:</b> الـ <b>Evidence</b> هو اللي يربط الكود + الناس + التغيير + الجودة + القيمة ببعضها.
+    </div>
+  </section>
+
+  <!-- OBJ 1b: Engineering over time -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">OBJECTIVE 1 (تابع)</div>
+    <h3 class="text-xl font-bold mb-4">⏳ الهندسة تفكر في الزمان: Change · Quality · Evidence</h3>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="border-r-4 border-blue-500 bg-blue-50 dark:bg-blue-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-blue-700 dark:text-blue-300 mb-1">1 · CHANGE <span class="chip bg-blue-200 text-blue-800">PLAN</span></div>
+        <p class="text-xs leading-relaxed">خطط لتغير الاحتياجات، الأخطاء (defects)، البيئات، وانتقال الملكية (ownership). <b>أول بناء ليس نهائياً!</b></p>
+      </div>
+      <div class="border-r-4 border-purple-500 bg-purple-50 dark:bg-purple-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-purple-700 dark:text-purple-300 mb-1">2 · QUALITY <span class="chip bg-purple-200 text-purple-800">CHECK</span></div>
+        <p class="text-xs leading-relaxed">الجودة تشمل <b>Reliability</b> (الاعتمادية) + <b>Security</b> (الأمان) + <b>Usability</b> (سهولة الاستخدام) + <b>Maintainability</b> (قابلية الصيانة). التوقعات لازم تطابق <b>المخاطرة</b>.</p>
+      </div>
+      <div class="border-r-4 border-pink-500 bg-pink-50 dark:bg-pink-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-pink-700 dark:text-pink-300 mb-1">3 · EVIDENCE <span class="chip bg-pink-200 text-pink-800">SHOW</span></div>
+        <p class="text-xs leading-relaxed">الدليل يشمل <b>Artefacts</b> (مخرجات) + <b>Reviews</b> (مراجعات) + <b>Tests</b> (اختبارات) + <b>Versions</b> (إصدارات) + <b>Limitations</b> (حدود) — أشياء أي شخص ثاني يقدر يفحصها.</p>
+      </div>
+    </div>
+    <div class="mt-4 bg-slate-100 dark:bg-slate-800 p-4 rounded-lg text-center text-sm font-bold">
+      ❌ "I think it works" ليس دليلاً — <span class="text-pink-600 dark:text-pink-400">"أنا أعتقد أنه يشتغل" غير مقبول</span>
+    </div>
+  </section>
+
+  <!-- OBJ 2 & 3 -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">OBJECTIVES 2 & 3</div>
+    <h3 class="text-xl font-bold mb-4">✅ جاهز أولاً، ثم حدد المشكلة (Readiness → Bounded Problem)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-5">"Ready first. Then frame the problem." — لا تستعجل على تعريف المشكلة قبل ما تتأكد إنك جاهز.</p>
+    <div class="grid md:grid-cols-2 gap-5">
+      <div>
+        <h4 class="font-bold mb-3 text-sm">1 · Prerequisite Readiness (الجاهزية المسبقة)</h4>
+        <div class="space-y-2">
+          <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg text-xs"><b>Approved case</b> — تعرف بالضبط وش مسموح للمشروع يسويه.</div>
+          <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg text-xs"><b>Approved toolchain</b> — تستخدم بس الأدوات المسموح بها لهذه الحالة.</div>
+          <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg text-xs"><b>Evidence rules</b> — تعرف وش الدليل المطلوب تسجّله.</div>
+          <div class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg text-xs"><b>Readiness gap</b> — تُسمّي وش الدعم اللي ناقصك بعد.</div>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 text-sm">2 · Bounded Engineering Problem (المشكلة المحدودة)</h4>
+        <div class="space-y-2">
+          <div class="bg-sky-50 dark:bg-sky-950/30 p-3 rounded-lg text-xs"><b>User need</b> — مين يحتاج وش؟</div>
+          <div class="bg-sky-50 dark:bg-sky-950/30 p-3 rounded-lg text-xs"><b>Stakeholder value</b> — وش النتيجة المفيدة اللي يفترض البرنامج يخلقها؟</div>
+          <div class="bg-sky-50 dark:bg-sky-950/30 p-3 rounded-lg text-xs"><b>Credible success signal</b> — وش الدليل القابل للقياس اللي يبرز التقدم؟</div>
+          <div class="bg-sky-50 dark:bg-sky-950/30 p-3 rounded-lg text-xs"><b>Boundary</b> — وش اللي داخل بوضوح وخارج بوضوح من المشكلة؟</div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 bg-red-50 dark:bg-red-950/30 border-r-4 border-red-500 p-4 rounded-lg text-sm">
+      <b>⚠️ فخ الاختبار:</b> <b>Ready ≠ Confident</b> — الجاهزية ليست الثقة! الجاهزية تعني أن الـ <span dir="ltr">approved case, tools, evidence rules</span> واضحة ومحددة.
+    </div>
+  </section>
+
+  <!-- HANDS-ON MCQ -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🛠️ تطبيق عملي (Hands-on MCQ)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">حلها بنفسك الأول، ثم اضغط على السؤال عشان تشوف الإجابة والشرح:</p>
+    <div class="space-y-3">
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السؤال 1: ميزة الرفع (upload) تشتغل. أي مهمة تعتبر Software Engineering أساساً؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) أضف فحص لنوع الملف واختبره<br>B) خطط لكيفية التعامل مع المستخدمين والتحديثات والأخطاء<br>C) أعد هيكلة دالة الرفع وحدّث التعليقات</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: B</p>
+          <p class="text-xs">لأن التخطيط للمستخدمين والتحديثات والأخطاء = تفكير <b>عبر الزمن والناس والتغيير</b> — وهذا جوهر الهندسة. A و C مجرد <b>مهام برمجة مباشرة</b> (كود فقط).</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السؤال 2: الفريق يعرف Python. أي خيار يُظهر الجاهزية (Readiness) بشكل صحيح؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) Approved case, allowed tools, evidence rules, readiness gap<br>B) Approved case, familiar tools, coding rules, first feature<br>C) Project goal, allowed tools, team confidence, first feature</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: A</p>
+          <p class="text-xs">الجاهزية = العناصر الأربعة الرسمية. <b>"Familiar tools" فخ</b> — لازم <b>allowed</b> (مسموح) مو <b>familiar</b> (مألوف)! و B تنقصها evidence rules والـ gap. أما C فتخلط بين الجاهزية والثقة (<b>Ready ≠ Confident</b>).</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السؤال 3: صف 10 يسلّم ملف PDF واحد للمعرض. أي مشكلة "محدودة" (bounded) بشكل صحيح؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) رفع أسهل للمعرض؛ النجاح = أغلب الطلاب يفضّلونه<br>B) تحسين رفعات صف 10؛ النجاح = أسئلة دعم أقل<br>C) رفع ملف PDF واحد؛ النجاح = 90% من الرفعات الصحيحة تكتمل</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: C</p>
+          <p class="text-xs">لأن فيها <b>نطاق واضح</b> (ملف PDF واحد) + <b>إشارة نجاح قابلة للقياس</b> (90%). A تعتمد على التفضيل (مشاعر مو قياس)، و B أقل تحديداً.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- RIGHT vs WRONG -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">⚖️ الصح vs الخطأ (Right vs Wrong)</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-xl p-4 border border-emerald-200 dark:border-emerald-800">
+        <div class="font-bold text-emerald-700 dark:text-emerald-300 mb-3">✅ افعل هذا (Right)</div>
+        <ul class="space-y-2 text-xs leading-relaxed">
+          <li class="flex gap-2"><span>✔️</span><span>افحص <b>الزمن، الناس، التغيير، والمخاطرة</b> (Time, People, Change, Risk).</span></li>
+          <li class="flex gap-2"><span>✔️</span><span>شمّل <b>Code, Data, People, Dependencies</b> في تفكيرك.</span></li>
+          <li class="flex gap-2"><span>✔️</span><span>سجّل <b>Readiness gaps</b> و<b>Evidence</b> بالورق.</span></li>
+          <li class="flex gap-2"><span>✔️</span><span>اربط <b>Stakeholder value</b> بـ <b>إشارة نجاح قابلة للقياس</b> و<b>حدود واضحة</b>.</span></li>
+        </ul>
+      </div>
+      <div class="bg-red-50 dark:bg-red-950/30 rounded-xl p-4 border border-red-200 dark:border-red-800">
+        <div class="font-bold text-red-700 dark:text-red-300 mb-3">❌ لا تفعل هذا (Wrong)</div>
+        <ul class="space-y-2 text-xs leading-relaxed">
+          <li class="flex gap-2"><span>✖️</span><span>تعامل الهندسة على إنها <b>مجرد كود أكثر</b>.</span></li>
+          <li class="flex gap-2"><span>✖️</span><span>تنظر للـ <b>كود فقط</b> وتتجاهل باقي النظام.</span></li>
+          <li class="flex gap-2"><span>✖️</span><span>تعتبر <b>الثقة دليل على الإتقان</b> (Confidence ≠ Proof).</span></li>
+          <li class="flex gap-2"><span>✖️</span><span>تترك المشكلة <b>واسعة وغير محددة</b>.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM HACKS -->
+  <section class="bg-gradient-to-l from-amber-400 to-orange-500 text-white rounded-2xl p-6 shadow-xl">
+    <h3 class="text-xl font-bold mb-4">🔥 حيل الاختبار (Exam Hacks)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "users, updates, failures, over time" → <b>الجواب: Software Engineering</b> (مو مجرد برمجة)</div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "code + data + interfaces + people + procedures + dependencies + operating conditions" → <b>الجواب: System</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "evolving needs, defects, environments, ownership" → <b>الجواب: Change (PLAN)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "reliability, security, usability, maintainability" → <b>الجواب: Quality (CHECK)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "artefacts, reviews, tests, versions, limitations, inspected by another person" → <b>الجواب: Evidence (SHOW)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "approved case, approved toolchain, evidence rules, readiness gap" → <b>الجواب: Prerequisite Readiness</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "user need, stakeholder value, credible success signal, boundary" → <b>الجواب: Bounded Engineering Problem</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "confident", "familiar tools", "team confidence" → <b>الجواب: خطأ! Ready ≠ Confident</b></div>
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">📖 المصطلحات الأساسية (Key Terms)</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead><tr class="bg-indigo-600 text-white text-xs"><th class="p-2 text-right">English Term</th><th class="p-2 text-right">بالعربي</th><th class="p-2 text-right">Simple Definition</th></tr></thead>
+        <tbody class="text-xs">
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Stakeholder Value</td><td class="p-2">قيمة المستفيد</td><td class="p-2 text-slate-500 dark:text-slate-400">Useful result for an approved user.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">System</td><td class="p-2">النظام</td><td class="p-2 text-slate-500 dark:text-slate-400">Code plus the people, data and conditions around it.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Change</td><td class="p-2">التغيير</td><td class="p-2 text-slate-500 dark:text-slate-400">New needs, defects, environments or ownership.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Quality</td><td class="p-2">الجودة</td><td class="p-2 text-slate-500 dark:text-slate-400">Visible expectations such as reliability, security and usability.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Evidence</td><td class="p-2">الدليل</td><td class="p-2 text-slate-500 dark:text-slate-400">Tests, reviews, versions and limits others can inspect.</td></tr>
+          <tr><td class="p-2 font-bold">Boundary</td><td class="p-2">الحدود</td><td class="p-2 text-slate-500 dark:text-slate-400">What is inside the approved problem and what is excluded.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="flex justify-between items-center pt-4">
+    <a href="index.html" class="text-indigo-600 dark:text-indigo-400 text-sm font-bold">→ الرجوع للرئيسية</a>
+    <a href="class2.html" class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-700 transition">الدرس التالي: Class 2 ←</a>
+  </div>
+
+</main>
+
+<script>
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent='☀️';
+</script>
+</body>
+</html>

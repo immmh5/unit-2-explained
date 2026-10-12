@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 2 — Lifecycle & Process Models | Software Engineering</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Cairo', 'sans-serif'] } } } }</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Cairo', sans-serif; }
+  .pop { animation: pop .5s cubic-bezier(.17,.67,.35,1.2); }
+  @keyframes pop { 0% { transform: scale(.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  details summary{cursor:pointer}
+  details[open] summary .arr{transform:rotate(90deg)}
+  .arr{transition:transform .2s;display:inline-block}
+  .chip{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-indigo-600 via-purple-600 to-fuchsia-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl">🎓</span>
+      <div><h1 class="text-lg md:text-xl font-bold">Class 2 — Lifecycle & Process Models</h1><p class="text-[11px] md:text-xs text-indigo-100">Unit 1 · Lifecycle & Process Models</p></div>
+    </div>
+    <button onclick="toggleDarkMode()" class="bg-white/15 hover:bg-white/25 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-l from-indigo-500 via-purple-600 to-fuchsia-600 text-white rounded-2xl p-6 md:p-8 shadow-xl pop">
+    <div class="text-5xl mb-3">🛤️</div>
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Class 2: مقارنة نماذج دورة الحياة</h2>
+    <p class="text-indigo-100 text-sm md:text-base leading-relaxed">
+      السؤال الجوهري للدرس كله: <b>أي عملية تناسب هذا المشروع — ووش اللي يخلينا نغيّرها؟</b> 🤔
+      ما في عملية "أحسن" مطلقًا. الاختيار الصح يبدأ من <b>ظروف المشروع</b> مو من الشهرة... وطول ما الظروف تتغير، الاختيار نفسه يتغير!
+    </p>
+  </section>
+
+  <!-- QUICK SUMMARY -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">⭐ الملخص السريع (الترتيب المنطقي للدرس)</h3>
+    <ol class="space-y-3">
+      <li class="flex gap-3 bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+        <p class="text-sm">قبل ما تختار عملية، <b>حلّل ظروف المشروع</b> (PROFILE): Requirement change · Technical novelty · Stakeholder access · Team maturity · Dependencies · Failure impact — هذه تكشف <b>الغموض والخطر</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+        <p class="text-sm">بعدها <b>قارن الخيارات</b> (OPTIONS): <b>Predictive</b> (تخطيط مبكر) · <b>Iterative</b> (تكرار لتحسين الفهم) · <b>Incremental</b> (أجزاء قابلة للاستخدام) · <b>Agile</b> (دورات قصيرة + تخطيط مرن) · <b>Hybrid</b> (دمج مقصود).</p>
+      </li>
+      <li class="flex gap-3 bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-pink-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+        <p class="text-sm">كل خيار يتعامل مع <b>التغيير، التغذية الراجعة، والأدلة</b> بطريقة مختلفة — لذلك ما في فائز عالمي.</p>
+      </li>
+      <li class="flex gap-3 bg-teal-50 dark:bg-teal-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">4</span>
+        <p class="text-sm">بعدها <b>الFIT</b>: نختار اللي يناسب الظروف الحالية. مثال: نطاق ثابت + اعتماديات معروفة → <b>Predictive</b>؛ نطاق ثابت + إطلاق مبكر → <b>Incremental</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-amber-600 text-white text-xs font-bold flex items-center justify-center">5</span>
+        <p class="text-sm">ثم <b>الCHALLENGE</b>: لما تتغير ظرف واحد (مثلاً صارت فيه تغذية راجعة كل أسبوع) → فكرة افتراضية انكسرت → العملية الأنسب تتغير → تقدر تنتقل لـ <b>Agile</b>.</p>
+      </li>
+      <li class="flex gap-3 bg-rose-50 dark:bg-rose-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center justify-center">6</span>
+        <p class="text-sm">الاختيار النهائي لازم يكون <b>قابل للتتبع، قابل للطعن، وقابل للمراجعة</b>: نكتب الفوائد والتكاليف والخطر المتبقي + <b>Review Trigger</b> + بديل واحد صالح.</p>
+      </li>
+    </ol>
+    <div class="mt-4 text-center bg-gradient-to-l from-indigo-100 to-fuchsia-100 dark:from-indigo-950/40 dark:to-fuchsia-950/40 rounded-xl py-3 px-4">
+      <b class="text-sm">المعادلة الذهبية:</b> <span class="text-sm" dir="ltr">CONDITIONS → OPTIONS → FIT → CHALLENGE</span>
+    </div>
+  </section>
+
+  <!-- TODDLER EXPLAINER -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">🧸 الشرح كأني طفل سنة أولى</h3>
+    <div class="space-y-4 text-sm md:text-base leading-loose">
+      <p>تخيلك بتسافر مع عائلتك 👨‍👩‍👧‍👦. كيف تختارون طريقة السفر؟ ما تقولون "الطيارة دائمًا أحسن"! أول شي تسألون: <b>وين رايحين؟ كم الفلوس؟ معنا أطفال؟ عندنا وقت؟</b> — هذه هي <b>الظروف (Conditions)</b>.</p>
+      <ul class="space-y-3 mr-4">
+        <li class="bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg"><b>① ظروف المشروع:</b> نفس السفر — أسأل عن التغيير، الجديد من التقنية، وصول المستفيدين، نضج الفريق، الاعتماديات، وأثر الفشل.</li>
+        <li class="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg"><b>② الخيارات:</b> خمس طرق لتنظيم الشغل — كل وحدة تتعامل مع "التغيير والرأي والدليل" بطريقة مختلفة.</li>
+        <li class="bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg"><b>③ الأنسب (Fit):</b> نختار الطريقة اللي توافق ظروفنا <b>الحالية</b>.</li>
+        <li class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg"><b>④ التحدي (Challenge):</b> لو تغير ظرف واحد (صار الأهل يعطون رأي كل أسبوع) → يمكن نغير طريقة السفر في نص الطريق!</li>
+      </ul>
+      <p class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg border-r-4 border-amber-400">
+        <b>الخلاصة:</b> اختيار العملية <b>قرار له سياق</b> — ما في فائز عالمي 🏆. وكل قرار لازم يكون <b>مكتوب ومبرر وقابل للمراجعة</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- REVIEW + HOOK -->
+  <section class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+    <h3 class="text-lg font-bold mb-4">🔄 قبل ما نبدأ — مراجعة سريعة</h3>
+    <ol class="space-y-2 text-sm list-decimal mr-5">
+      <li>هل لازم كل الفرق تستخدم نفس نموذج العملية؟ <span class="text-slate-500">(لا — الأفضل يعتمد على ظروف كل مشروع)</span></li>
+      <li>وش قد يخلي نموذج غير مناسب؟ <span class="text-slate-500">(تغير المتطلبات · خطر عالي · أصحاب المصلحة غير متاحين · الحاجة لأدلة رسمية)</span></li>
+    </ol>
+  </section>
+
+  <!-- LEARNING OBJECTIVES -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🎯 أهداف التعلم (Learning Objectives)</h3>
+    <div class="space-y-3">
+      <div class="flex gap-3 items-start bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center">1</span>
+        <p class="text-sm">أقارن بين <b>Predictive, Iterative, Incremental, Agile</b> باستخدام <b>ظروف مشروع واضحة</b>.</p>
+      </div>
+      <div class="flex gap-3 items-start bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">2</span>
+        <p class="text-sm">أطابق بين <b>الغموض، الخطر، وصول أصحاب المصلحة، الحاجة للأدلة</b> ودورة حياة مناسبة.</p>
+      </div>
+      <div class="flex gap-3 items-start bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg">
+        <span class="flex-shrink-0 w-7 h-7 rounded-full bg-pink-600 text-white text-xs font-bold flex items-center justify-center">3</span>
+        <p class="text-sm">أتحدى اختيار عملية <b>لما يتغير ظرف</b>، وأحدد التكييف المطلوب.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CONDITIONS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-2">📊 ظروف المشروع (Project Conditions)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">اختر حسب ظروف المشروع، مو حسب الشهرة!</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-lg"><b>1 · Requirement change</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">كم مرة تتغير المتطلبات؟ (Requirement volatility)</p></div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-lg"><b>2 · Technical novelty</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">هل التقنية جديدة/مجهولة على الفريق؟</p></div>
+      <div class="bg-pink-50 dark:bg-pink-950/30 p-4 rounded-lg"><b>3 · Stakeholder access</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">هل يقدرون يعطون رأي بسرعة؟</p></div>
+      <div class="bg-teal-50 dark:bg-teal-950/30 p-4 rounded-lg"><b>4 · Team maturity</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">هل الفريق متمرس بالطريقة؟</p></div>
+      <div class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg"><b>5 · Dependencies</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">اعتماديات خارجية معروفة؟</p></div>
+      <div class="bg-rose-50 dark:bg-rose-950/30 p-4 rounded-lg"><b>6 · Failure impact</b><p class="text-xs mt-1 text-slate-500 dark:text-slate-400">وش يصير لو فشلنا؟ (خطر عالي = أدلة أقوى)</p></div>
+    </div>
+    <div class="mt-4 bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3 text-sm">
+      <b>مثال:</b> نطاق ثابت + موافقة رسمية → يميل لـ <b>Predictive</b>. أما متطلبات متغيرة + تغذية راجعة كثيرة → يميل لدورات تعلم أقصر.
+    </div>
+  </section>
+
+  <!-- FIVE PROCESS OPTIONS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-2">🧩 خيارات العملية (Process Options)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">خمس طرق لتنظيم الشغل — كل وحدة تتعامل مع التغيير والتغذية الراجعة والأدلة بطريقة مختلفة.</p>
+    <div class="space-y-3">
+      <div class="border-r-4 border-indigo-500 bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-lg">
+        <b>PREDICTIVE · تنبؤي</b>
+        <p class="text-sm mt-1">تخطيط المراحل والـ <b>baselines</b> مبكرًا — مناسب لما يكون النطاق ثابتًا، الاعتماديات معروفة، وبوابات الأدلة الرسمية مهمة.</p>
+      </div>
+      <div class="border-r-4 border-purple-500 bg-purple-50 dark:bg-purple-950/30 p-4 rounded-lg">
+        <b>ITERATIVE · تكراري</b>
+        <p class="text-sm mt-1">تكرار: اكتشاف → تصميم → بناء → تقييم، <b>لتحسين الفهم</b> من خلال التغذية الراجعة.</p>
+      </div>
+      <div class="border-r-4 border-pink-500 bg-pink-50 dark:bg-pink-950/30 p-4 rounded-lg">
+        <b>INCREMENTAL · تزايدي</b>
+        <p class="text-sm mt-1">تسليم <b>أجزاء قابلة للاستخدام</b> (usable slices) مع الحفاظ على الـ integration والـ architecture وأدلة القبول.</p>
+      </div>
+      <div class="border-r-4 border-teal-500 bg-teal-50 dark:bg-teal-950/30 p-4 rounded-lg">
+        <b>AGILE · رشيق</b>
+        <p class="text-sm mt-1">دورات تغذية راجعة قصيرة + شغل <b>مرتب حسب الأولوية</b> + تخطيط مرن. <b>الوثائق والضوابط تبقى موجودة!</b></p>
+      </div>
+      <div class="border-r-4 border-amber-500 bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg">
+        <b>HYBRID · هجين</b>
+        <p class="text-sm mt-1">دمج <b>مقصود</b> لممارسات مختلفة لما تتطلب الحوكمة / الغموض / السلامة / الإصدارات إيقاعات مختلفة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKED EXAMPLE -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-2">🚀 مثال محلول: تطبيق توصيل طعام</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-4">
+        <b class="text-sm">الحالة (Scenario)</b>
+        <p class="text-sm mt-2">شركة ناشئة تبني: <b>Menu + Ordering + Payment + Live Tracking</b>. يبغون يطلعون نسخة مفيدة بدري، بعدين يضيفون الباقي في إصدارات لاحقة.</p>
+        <div class="mt-3 bg-emerald-100 dark:bg-emerald-950/40 rounded p-2 text-sm font-bold text-emerald-700 dark:text-emerald-300">
+          الأنسب ابتداءً = INCREMENTAL ✅<br><span class="font-normal text-xs">الإصدار 1: Menu + Order → 2: Payment → 3: Tracking</span>
+        </div>
+      </div>
+      <div class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-4">
+        <b class="text-sm">لما يتغير ظرف واحد (Challenge)</b>
+        <p class="text-sm mt-2">ظرف جديد: العملاء والمطاعم صاروا يعطون <b>تغذية راجعة كل أسبوع</b>، والمتطلبات والأولويات تتغير باستمرار.</p>
+        <div class="mt-3 space-y-2 text-sm">
+          <div class="bg-red-100 dark:bg-red-950/40 p-2 rounded text-red-700 dark:text-red-300">❌ أثبت على Incremental وما تغير شي</div>
+          <div class="bg-emerald-100 dark:bg-emerald-950/40 p-2 rounded text-emerald-700 dark:text-emerald-300">✅ <b>Agile</b> — عدّل الأولويات بالتغذية الراجعة المتكررة</div>
+          <div class="bg-red-100 dark:bg-red-950/40 p-2 rounded text-red-700 dark:text-red-300">❌ Predictive وقفل المتطلبات</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HANDS ON -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-2">🛠️ نشاط عملي: متجر إلكتروني (Online Store App)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">مشروع واحد · أربع قرارات · PROFILE → COMPARE → CHALLENGE → DEFEND</p>
+    <div class="space-y-3">
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 1 · PROFILE — أي وصف أنسب؟</summary>
+        <p class="mt-2 text-sm">المنتجات وقواعد الدفع ومناطق التوصيل <b>متفق عليها</b>، وبوابة الدفع <b>معروفة</b>.</p>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: A — ثابت في الغالب + اعتماديات معروفة.</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 2 · COMPARE — أي عملية بداية أنسب؟</summary>
+        <p class="mt-2 text-sm">الشركة تبغى <b>إطلاق مخطط واحد</b>، والـ Checkout + Payment لازم يعدّون <b>موافقة أمنية</b> قبل ما يشتري العملاء.</p>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: A — Predictive (نطاق ثابت + بوابة أمنية = أدلة وموافقات رسمية).</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 3 · CHALLENGE — أي افتراض انكسر؟</summary>
+        <p class="mt-2 text-sm">العملاء صاروا يطلبون تغييرات <b>كل أسبوع</b> على الخصومات والفلاتر والـ Checkout.</p>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: A — "المتطلبات تبقى ثابتة" لم يعد صحيحًا.</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 4 · DEFEND — النهج النهائي الأنسب؟</summary>
+        <p class="mt-2 text-sm">الفريق يحتاج تغييرات كثيرة، <b>لكن</b> الدفع والموافقة الأمنية لا تزال مطلوبة قبل الإصدار.</p>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: C — <b>Hybrid</b> (مرونة Agile + بوابات أمنية Predictive).</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- EVIDENCE AND REFLECTION -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🔍 الأدلة والتفكير (Evidence & Reflection)</h3>
+    <p class="text-sm mb-3">اختيارك لازم يكون <b>قابل للتتبع، قابل للطعن، وقابل للمراجعة</b>:</p>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-emerald-50 dark:bg-emerald-950/30 rounded-lg p-4">
+        <b class="text-sm text-emerald-700 dark:text-emerald-400">✓ شكل النجاح</b>
+        <ul class="text-xs mt-2 space-y-1.5 list-disc mr-4">
+          <li>الظروف مقيّمة قبل الاختيار (غموض، وصول، خطر، أدلة).</li>
+          <li>على الأقل 4 خيارات مقارنة بنفس المعايير وبتفكير واضح.</li>
+          <li>الظرف المتغير يكشف افتراضًا + نتيجة + تكييف مناسب.</li>
+          <li>الاختيار النهائي يذكر: الفوائد، التكاليف، الخطر المتبقي، <b>Review Trigger</b>، وبديل صالح واحد.</li>
+        </ul>
+      </div>
+      <div class="bg-red-50 dark:bg-red-950/30 rounded-lg p-4">
+        <b class="text-sm text-red-700 dark:text-red-400">✗ الفخاخ الشائعة (Common Traps)</b>
+        <ul class="text-xs mt-2 space-y-1.5 list-disc mr-4">
+          <li>تسمية Agile بأنه <b>"غير مخطط"</b> — خطأ!</li>
+          <li>الاختيار حسب <b>الشهرة</b> (popularity).</li>
+          <li>معاملة النماذج كأنها <b>وصفات جامدة</b> (rigid recipes).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CHECK -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">✅ الفحص النهائي (Final Check)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">أي عملية أنسب لكل سيناريو؟</p>
+    <div class="space-y-3">
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 1 · تطبيق مدرسي بمتطلبات واضحة ما تتغير، وكل مرحلة لازم تُعتمد قبل التالية.</summary>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: Predictive</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 2 · فريق يعمل شاشة جديدة، ما يدرون أي تصميم أنسب — يجرّبون، يحسّنون، ويعيدون التجربة.</summary>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: Iterative</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 3 · تطبيق متجر مدرسي يُطلق في أجزاء قابلة للاستخدام: Login ثم Products ثم Payment.</summary>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: Incremental</p>
+      </details>
+      <details class="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-3">
+        <summary class="font-bold text-sm flex items-center gap-2"><span class="arr">▶</span> 4 · الطلاب يعطون رأي كل أسبوع، والمتطلبات تتغير، والفريق يغيّر الأولويات حسب الحاجة.</summary>
+        <p class="mt-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">✅ الجواب: Agile</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- EXAM HACKS -->
+  <section class="bg-gradient-to-l from-amber-500 via-orange-500 to-red-500 rounded-2xl p-6 shadow-xl">
+    <h3 class="text-xl font-extrabold mb-4 text-white">🔥 حيل الاختبار (Exam Hacks)</h3>
+    <div class="space-y-2 text-sm text-white">
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "stable scope", "formal approval", "known dependencies", "security approval before release" → <b>الجواب: Predictive</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "improve understanding", "test and improve again", "not sure which design works" → <b>الجواب: Iterative</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "usable parts/slices", "launch early", "release in parts", "adds a usable feature" → <b>الجواب: Incremental</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "weekly feedback", "change priorities", "short feedback cycles", "adaptive planning" → <b>الجواب: Agile</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "frequent changes <b>BUT</b> formal approval still required" → <b>الجواب: Hybrid</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "unplanned", "no documentation", "no controls" → <b>الجواب: خطأ! هذا وصف خاطئ لـ Agile (common trap)</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "condition that tells the team to reconsider" → <b>الجواب: Review Trigger</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "no universal winner", "depends on the project" → <b>الجواب: اختر حسب الـ Conditions مو الشهرة</b></div>
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">📖 المصطلحات الأساسية (Key Terms)</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead><tr class="bg-indigo-600 text-white text-xs"><th class="p-2 text-right">English Term</th><th class="p-2 text-right">بالعربي</th><th class="p-2 text-right">Simple Definition</th></tr></thead>
+        <tbody class="text-xs">
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Lifecycle</td><td class="p-2">دورة الحياة</td><td class="p-2 text-slate-500 dark:text-slate-400">The overall way work moves from planning to delivery and change.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Predictive</td><td class="p-2">تنبؤي</td><td class="p-2 text-slate-500 dark:text-slate-400">Plans phases and baselines early when scope is stable and approvals matter.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Iterative</td><td class="p-2">تكراري</td><td class="p-2 text-slate-500 dark:text-slate-400">Repeats work to improve understanding through feedback.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Incremental</td><td class="p-2">تزايدي</td><td class="p-2 text-slate-500 dark:text-slate-400">Delivers usable parts that add capability step by step.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Agile</td><td class="p-2">رشيق</td><td class="p-2 text-slate-500 dark:text-slate-400">Uses short feedback cycles and adaptive planning with needed controls.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Hybrid</td><td class="p-2">هجين</td><td class="p-2 text-slate-500 dark:text-slate-400">Deliberately combines practices to fit different project needs.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Process baseline</td><td class="p-2">خط أساس العملية</td><td class="p-2 text-slate-500 dark:text-slate-400">The current agreed process used as the team starting point.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Requirement volatility</td><td class="p-2">تقلب المتطلبات</td><td class="p-2 text-slate-500 dark:text-slate-400">How often or how much requirements are likely to change.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Stakeholder access</td><td class="p-2">الوصول لأصحاب المصلحة</td><td class="p-2 text-slate-500 dark:text-slate-400">How easily the team can get timely stakeholder feedback.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Evidence gate</td><td class="p-2">بوابة الأدلة</td><td class="p-2 text-slate-500 dark:text-slate-400">A check that requires specific proof before work moves forward.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Trade off</td><td class="p-2">مفاضلة</td><td class="p-2 text-slate-500 dark:text-slate-400">A benefit gained while accepting a cost or disadvantage.</td></tr>
+          <tr><td class="p-2 font-bold">Review trigger</td><td class="p-2">محفز المراجعة</td><td class="p-2 text-slate-500 dark:text-slate-400">A condition that tells the team to reconsider the process choice.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="flex justify-between items-center pt-4">
+    <a href="index.html" class="text-indigo-600 dark:text-indigo-400 text-sm font-bold">→ الرجوع للرئيسية</a>
+    <a href="class3.html" class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-700 transition">الدرس التالي: Class 3 ←</a>
+  </div>
+
+</main>
+
+<script>
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent='☀️';
+</script>
+</body>
+</html>

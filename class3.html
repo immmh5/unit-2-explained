@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 3 — ميثاق المشروع وخط أساس العملية | Software Engineering</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Cairo', 'sans-serif'] } } } }</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Cairo', sans-serif; }
+  .pop { animation: pop .5s cubic-bezier(.17,.67,.35,1.2); }
+  @keyframes pop { 0% { transform: scale(.92); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  details summary{cursor:pointer}
+  details[open] summary .arr{transform:rotate(90deg)}
+  .arr{transition:transform .2s;display:inline-block}
+  .chip{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+<header class="bg-gradient-to-l from-indigo-600 via-purple-600 to-fuchsia-600 text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <span class="text-3xl">🎓</span>
+      <div><h1 class="text-lg md:text-xl font-bold">Class 3 — Project Charter & Process Baseline</h1><p class="text-[11px] md:text-xs text-indigo-100">Unit 1 · Lifecycle & Process Models</p></div>
+    </div>
+    <button onclick="toggleDarkMode()" class="bg-white/15 hover:bg-white/25 px-3 py-2 rounded-full text-sm"><span id="theme-icon">🌙</span></button>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+
+  <!-- HERO -->
+  <section class="bg-gradient-to-l from-indigo-500 via-purple-600 to-fuchsia-600 text-white rounded-2xl p-6 md:p-8 shadow-xl pop">
+    <div class="text-5xl mb-3">📜</div>
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Class 3: ميثاق المشروع وخط أساس العملية</h2>
+    <p class="text-indigo-100 text-sm md:text-base leading-relaxed">
+      السؤال الجوهري للدرس كله: <b>اختيار نموذج العملية لا يكفي — الفريق الحقيقي لازم يتفق على كيف ستشتغل هذه العملية فعلياً.</b><br>
+      "اختيار الـ process مجرد بداية. الفريق يحتاج اتفاق يحدد: مين يقرر، مين يوافق، كيف نعرف إن الشغل جاهز، ووش نسوي لو تغيرت المتطلبات."
+    </p>
+  </section>
+
+  <!-- QUICK SUMMARY -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">⭐ الملخص السريع</h3>
+    <ol class="space-y-3 text-sm md:text-base leading-relaxed">
+      <li class="bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg"><b>① اختيار دورة الحياة لا يكفي</b> — الفريق يجب أن يتفق على <b>كيف</b> ستعمل تلك العملية فعلياً.</li>
+      <li class="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg"><b>② الـ Project Charter هو هذا الاتفاق</b> — خمس أجزاء: <b>Purpose, People, Flow, Gates, Adapt</b>.</li>
+      <li class="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-3 rounded-lg"><b>③ الـ Purpose يضع الحدود</b> (داخل/خارج النطاق)؛ الـ <b>Flow + Gates</b> تجعل العمل قابلاً للتحكم؛ الـ <b>Adapt + Trace</b> تجعله قابلاً للمراجعة.</li>
+      <li class="bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg"><b>④ الـ Process Baseline</b> يحوّل الاتفاق إلى خطوات ملموسة: <span dir="ltr">Plan → Design → Build → Test → Release</span> — لكل خطوة مسؤول ومخرج وفحص وتغذية راجعة.</li>
+      <li class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg"><b>⑤ كل تغيير يُراجَع أولاً</b>، ثم يُوافَق عليه من صاحب الـ <b>Decision Right</b>، ثم يُسجَّل في الـ <b>Trace</b>.</li>
+      <li class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg"><b>⑥ لا شيء ينتقل إلى Release</b> حتى يكون <b>gate evidence</b> كاملاً.</li>
+    </ol>
+  </section>
+
+  <!-- TODDLER EXPLAINER -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">🧸 الشرح كأني طفل سنة أولى</h3>
+    <div class="space-y-4 text-sm md:text-base leading-loose">
+      <p>تخيلك وأصحابك فتحتوا <b>كشك عصير ليمون</b> 🍋. قبل ما تبدأوا تبيعوا، لازم تتفقوا على أشياء:</p>
+      <ul class="space-y-3 mr-4">
+        <li class="bg-indigo-50 dark:bg-indigo-950/30 p-3 rounded-lg"><b>① مين يسوي وش (People):</b> مين يعصر، مين يبيع، مين يقبض الفلوس، ومين يتقرر لو صار خلاف.</li>
+        <li class="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg"><b>② وش في القائمة (Purpose / Scope):</b> عصير ليمون بس — <b>الكوكيز خارج</b> 🚫! ما نبيعها هاليومين.</li>
+        <li class="bg-pink-50 dark:bg-pink-950/30 p-3 rounded-lg"><b>③ كيف نسويها (Flow):</b> الخطوات — قطّف → اعصر → حلّي → قدّم.</li>
+        <li class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-lg"><b>④ فحص الذوق (Quality Gate):</b> قبل أي كوب يطلع للزبون، واحد منكم يذوقه. لو حامض زيادة → يرجع يتعادله.</li>
+        <li class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg"><b>⑤ لو طلبوا نكهة جديدة (Adapt):</b> ما نطبخها فوراً! نجلس نفكر: هل نضيفها؟ كم تكلف؟ مين يقرر؟ ونسجل إننا غيرنا القائمة.</li>
+      </ul>
+      <p class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg border-r-4 border-amber-400">
+        <b>الخلاصة:</b> الاتفاق الكامل هذا (مين، وش، كيف، فحص، تغيير) هو الـ <b>Project Charter</b> 📜. خطوات الوصفة نفسها هي الـ <b>Process Baseline</b> 🪜. وفحص الذوق قبل التقديم هو الـ <b>Quality Gate</b> ✅.
+      </p>
+    </div>
+  </section>
+
+  <!-- REVIEW + HOOK -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">🔄 قبل ما نبدأ — مراجعة سريعة + السؤال المحفّز</h3>
+    <div class="grid md:grid-cols-2 gap-4 mb-5">
+      <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg">
+        <h4 class="font-bold text-sm mb-3">مراجعة الدرس السابق:</h4>
+        <ul class="space-y-2 text-xs">
+          <li class="bg-blue-50 dark:bg-blue-950/30 p-2 rounded">مشروع متطلباته ثابتة وإصدار واحد مخطط له → <b>Predictive</b> ✔️</li>
+          <li class="bg-purple-50 dark:bg-purple-950/30 p-2 rounded">فريق يحسّن نفس الميزة بعد كل اختبار مستخدم → <b>Iterative</b> ✔️</li>
+          <li class="bg-orange-50 dark:bg-orange-950/30 p-2 rounded">تغييرات كثيرة + كل إصدار يحتاج موافقة رسمية → <b>Hybrid</b> ✔️</li>
+        </ul>
+      </div>
+      <div class="bg-red-50 dark:bg-red-950/30 p-4 rounded-lg border-r-4 border-red-400">
+        <h4 class="font-bold text-sm mb-2">⚠️ السؤال المحفّز (Hook):</h4>
+        <p class="text-xs leading-relaxed">"فريق بدأ يبرمج فوراً. لا أحد يعرف <b>مين يقدر يوافق على التغييرات</b>، <b>وش الدليل المطلوب</b>، ولا <b>متى مسموح الإصدار</b>."<br><br>
+        <b>قبل ما الفريق يبدأ، على وش لازم يتفقوا</b> عشان يبقى الشغل متحكم فيه ومسؤولاً؟</p>
+        <p class="text-xs mt-2 text-emerald-600 dark:text-emerald-400"><b>الجواب المتوقّع:</b> اتفاق واضح قبل البداية — مين يحدد النطاق، مين عنده صلاحية الموافقة، كيف نعرف إن الشغل جاهز للمرحلة التالية، ووش نسوي لو تغيرت المتطلبات.</p>
+      </div>
+    </div>
+    <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-lg text-center text-sm font-bold">
+      نحتاج <b>PROJECT CHARTER</b> يحدد اتفاق الفريق الأساسي + <b>PROCESS BASELINE</b> يحدد كيف يجري الشغل وأي ضوابط مطلوبة 🎯
+    </div>
+  </section>
+
+  <!-- LEARNING OBJECTIVES -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">LEARNING OBJECTIVES</div>
+    <h3 class="text-xl font-bold mb-4">🎯 أهداف الدرس</h3>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="border-r-4 border-indigo-500 bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-indigo-700 dark:text-indigo-300 mb-1 text-sm">1 · Create a Project Charter</div>
+        <p class="text-xs leading-relaxed">تعرّف <b>النطاق، أصحاب المصلحة، أدوار الفريق، القرارات، التواصل، ومخرجات العمل</b>.</p>
+      </div>
+      <div class="border-r-4 border-purple-500 bg-purple-50 dark:bg-purple-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-purple-700 dark:text-purple-300 mb-1 text-sm">2 · Defend a Process Decision</div>
+        <p class="text-xs leading-relaxed">اشرح <b>ليش</b> فريقك اختار هذه العملية، وحسّنها لما يتغير المشروع.</p>
+      </div>
+      <div class="border-r-4 border-fuchsia-500 bg-fuchsia-50 dark:bg-fuchsia-950/30 p-4 rounded-l-xl">
+        <div class="font-bold text-fuchsia-700 dark:text-fuchsia-300 mb-1 text-sm">3 · Create a Process Baseline</div>
+        <p class="text-xs leading-relaxed">بيّن <b>خطوات العمل، التغذية الراجعة، التغييرات، الأدلة، وفحوصات الجودة</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT CHARTER DEFINITION + 5 PARTS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">DEFINITION</div>
+    <h3 class="text-xl font-bold mb-3">📜 ما هو الـ Project Charter؟</h3>
+    <div class="bg-sky-50 dark:bg-sky-950/30 p-4 rounded-lg text-sm mb-4 border-r-4 border-sky-400">
+      <b>"Project Charter is the team's agreed guide for how the project will run."</b><br>
+      <span class="text-xs">الميثاق هو الدليل المتفق عليه بين الفريق لكيفية إدارة المشروع — يحدد الهدف، الناس، سير العمل، بوابات الجودة، ومتى تُراجَع العملية أو تُغيَّر.</span>
+    </div>
+    <div class="bg-red-50 dark:bg-red-950/30 p-3 rounded-lg text-xs mb-5">
+      <b>⚠️ فخ شائع:</b> الميثاق <b>ليس</b> وصفاً قصيراً للتطبيق ("نحن نصنع تطبيق طلبات طعام") — بل هو <b>اتفاق تشغيل الفريق</b> (operating agreement).
+    </div>
+    <h4 class="font-bold mb-4 text-sm">أجزاء الميثاق الخمسة (احفظها بالإنجليزي):</h4>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-xl">
+        <div class="text-3xl mb-2">🎯</div>
+        <div class="font-bold text-indigo-700 dark:text-indigo-300 text-sm">① PURPOSE</div>
+        <p class="text-xs mt-2 leading-relaxed">حدد <b>المشكلة، المستخدمين، القيمة، مقاييس النجاح، الاستثناءات، والحدود الأخلاقية/السلامة</b>.</p>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-xl">
+        <div class="text-3xl mb-2">👥</div>
+        <div class="font-bold text-purple-700 dark:text-purple-300 text-sm">② PEOPLE</div>
+        <p class="text-xs mt-2 leading-relaxed">حدد <b>الأدوار، ملكية المخرجات (artefact ownership)، صلاحيات القرار، واجبات المراجعة، تواصل الفريق، وكيف تطلب المساعدة</b>.</p>
+      </div>
+      <div class="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-4 rounded-xl">
+        <div class="text-3xl mb-2">🔀</div>
+        <div class="font-bold text-fuchsia-700 dark:text-fuchsia-300 text-sm">③ FLOW</div>
+        <p class="text-xs mt-2 leading-relaxed">ارسم <b>الاكتشاف، التصميم، البناء، التحقق، الإصدار</b> مع حلقات التغذية الراجعة وحدود العمل المرئية.</p>
+      </div>
+      <div class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-xl">
+        <div class="text-3xl mb-2">🚦</div>
+        <div class="font-bold text-amber-700 dark:text-amber-300 text-sm">④ GATES</div>
+        <p class="text-xs mt-2 leading-relaxed">حدد <b>الدليل المطلوب</b> لكل من: الخطوط الأساسية، المراجعات، الاختبارات، الموافقة على التغيير، وقرار الإصدار أو عدمه.</p>
+      </div>
+      <div class="bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-xl">
+        <div class="text-3xl mb-2">🧭</div>
+        <div class="font-bold text-emerald-700 dark:text-emerald-300 text-sm">⑤ ADAPT</div>
+        <p class="text-xs mt-2 leading-relaxed">اضبط <b>محفّزات المراجعة</b> (review triggers) عشان يغيّر الفريق العملية بوعي، مع الحفاظ على التتبع والمساءلة.</p>
+      </div>
+      <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl flex items-center justify-center text-center">
+        <p class="text-xs font-bold text-slate-600 dark:text-slate-300">الخمس أجزاء مع بعضها =<br>اتفاق تشغيل كامل للفريق 📜</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW A CHARTER CONTROLS THE PROCESS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">CONTROL CHAINS</div>
+    <h3 class="text-xl font-bold mb-4">🔗 كيف يتحكم الميثاق بالعملية؟ (3 سلاسل)</h3>
+    <div class="space-y-4">
+      <div class="flex flex-col md:flex-row items-stretch gap-2">
+        <div class="flex-1 bg-indigo-100 dark:bg-indigo-950/40 p-4 rounded-xl text-center">
+          <div class="font-bold text-indigo-700 dark:text-indigo-300">🎯 PURPOSE</div>
+          <p class="text-xs mt-1">الهدف يجعل حدود المشروع واضحة</p>
+        </div>
+        <div class="flex items-center justify-center text-2xl font-black text-indigo-400">←</div>
+        <div class="flex-1 bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-xl text-center border border-indigo-200 dark:border-indigo-800">
+          <div class="font-bold text-indigo-700 dark:text-indigo-300">BOUND (الحدود)</div>
+          <p class="text-xs mt-1">وش داخل، وش خارج، لمين يخدم، ووش قيمة تُعتبر نجاحاً.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-stretch gap-2">
+        <div class="flex-1 bg-purple-100 dark:bg-purple-950/40 p-4 rounded-xl text-center">
+          <div class="font-bold text-purple-700 dark:text-purple-300">🔀 FLOW</div>
+          <p class="text-xs mt-1">سير العمل يربط الناس بالشغل</p>
+        </div>
+        <div class="flex items-center justify-center text-2xl font-black text-purple-400">←</div>
+        <div class="flex-1 bg-purple-50 dark:bg-purple-950/30 p-4 rounded-xl text-center border border-purple-200 dark:border-purple-800">
+          <div class="font-bold text-purple-700 dark:text-purple-300">🚦 GATES</div>
+          <p class="text-xs mt-1">بوابات هي نقاط فحص <b>تتطلب دليلاً</b> قبل ما الفريق يراجع، يوافق، يغيّر، أو يصدر.</p>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-stretch gap-2">
+        <div class="flex-1 bg-emerald-100 dark:bg-emerald-950/40 p-4 rounded-xl text-center">
+          <div class="font-bold text-emerald-700 dark:text-emerald-300">🧭 ADAPT</div>
+          <p class="text-xs mt-1">محفّز المراجعة يقول متى تتغير العملية</p>
+        </div>
+        <div class="flex items-center justify-center text-2xl font-black text-emerald-400">←</div>
+        <div class="flex-1 bg-emerald-50 dark:bg-emerald-950/30 p-4 rounded-xl text-center border border-emerald-200 dark:border-emerald-800">
+          <div class="font-bold text-emerald-700 dark:text-emerald-300">📝 TRACE (التتبع)</div>
+          <p class="text-xs mt-1">السجل يكتب <b>وش تغيّر، ليش تغيّر، ومين وافق عليه</b>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 bg-slate-100 dark:bg-slate-800 p-4 rounded-lg text-center text-sm font-bold">
+      💡 "A charter makes process decisions <b>accountable</b> and <b>revisable</b>" — الميثاق يجعل قرارات العملية <b>مسؤولة</b> و<b>قابلة للمراجعة</b>.
+    </div>
+  </section>
+
+  <!-- PROCESS BASELINE -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">PROCESS BASELINE</div>
+    <h3 class="text-xl font-bold mb-3">🪜 ما هو الـ Process Baseline؟</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">هو <b>الطريقة المتفق عليها</b> لأداء العمل — يبيّن الخطوات الرئيسية، مخرجات العمل، التغذية الراجعة، الفحوصات، والقرارات.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+      <div class="bg-blue-50 dark:bg-blue-950/30 p-3 rounded-xl text-center border border-blue-200 dark:border-blue-800">
+        <div class="text-2xl mb-1">🗂️</div>
+        <div class="font-bold text-blue-700 dark:text-blue-300 text-sm">1 · Plan</div>
+        <p class="text-[10px] mt-1 text-slate-500 dark:text-slate-400">التخطيط — تحديد المطلوب</p>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 p-3 rounded-xl text-center border border-purple-200 dark:border-purple-800">
+        <div class="text-2xl mb-1">🎨</div>
+        <div class="font-bold text-purple-700 dark:text-purple-300 text-sm">2 · Design</div>
+        <p class="text-[10px] mt-1 text-slate-500 dark:text-slate-400">التصميم — شكل الحل</p>
+      </div>
+      <div class="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-3 rounded-xl text-center border border-fuchsia-200 dark:border-fuchsia-800">
+        <div class="text-2xl mb-1">🔨</div>
+        <div class="font-bold text-fuchsia-700 dark:text-fuchsia-300 text-sm">3 · Build</div>
+        <p class="text-[10px] mt-1 text-slate-500 dark:text-slate-400">البناء — كتابة الكود</p>
+      </div>
+      <div class="bg-amber-50 dark:bg-amber-950/30 p-3 rounded-xl text-center border border-amber-200 dark:border-amber-800">
+        <div class="text-2xl mb-1">🧪</div>
+        <div class="font-bold text-amber-700 dark:text-amber-300 text-sm">4 · Test</div>
+        <p class="text-[10px] mt-1 text-slate-500 dark:text-slate-400">التحقق — فحص العمل</p>
+      </div>
+      <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-xl text-center border border-emerald-200 dark:border-emerald-800">
+        <div class="text-2xl mb-1">🚀</div>
+        <div class="font-bold text-emerald-700 dark:text-emerald-300 text-sm">5 · Release</div>
+        <p class="text-[10px] mt-1 text-slate-500 dark:text-slate-400">الإصدار — يصل للمستخدم</p>
+      </div>
+    </div>
+
+    <h4 class="font-bold mb-3 text-sm">في كل خطوة، الفريق يعرف خمسة أشياء:</h4>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-xl mb-1">💼</div><b class="text-xs">Work</b><p class="text-[10px] text-slate-500">وش الشغل المطلوب</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-xl mb-1">🧑‍💻</div><b class="text-xs">Owner</b><p class="text-[10px] text-slate-500">مين المسؤول</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-xl mb-1">📦</div><b class="text-xs">Output</b><p class="text-[10px] text-slate-500">وش المخرج المنتَج</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-xl mb-1">✅</div><b class="text-xs">Check</b><p class="text-[10px] text-slate-500">وش يُفحَص</p></div>
+      <div class="border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-center"><div class="text-xl mb-1">💬</div><b class="text-xs">Feedback</b><p class="text-[10px] text-slate-500">متى تُعطى التغذية</p></div>
+    </div>
+
+    <div class="bg-amber-50 dark:bg-amber-950/30 p-4 rounded-lg text-sm border-r-4 border-amber-400">
+      <b>⚠️ مهم:</b> العملية <b>ليست دائماً خطاً مستقيماً</b>! الفريق قد يرجع، يصلح مشكلة، يراجع، ثم يكمل. مثال تطبيق الحضور: <span dir="ltr">Plan → Design → Build → Test → Release</span> — ولو وجد الـ Test خطأ برمجياً، يرجع الشغل لـ <b>Build</b> ويُصلح ثم يُعاد التحقق 🔁.
+    </div>
+  </section>
+
+  <!-- PUT IT TOGETHER -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">PUT IT TOGETHER</div>
+    <h3 class="text-xl font-bold mb-4">🧩 نجمع كل شيء معاً</h3>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="bg-indigo-50 dark:bg-indigo-950/30 p-4 rounded-xl border border-indigo-200 dark:border-indigo-800">
+        <div class="font-bold text-indigo-700 dark:text-indigo-300 text-sm mb-2">📜 PROJECT CHARTER</div>
+        <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-300">
+          <li>• Purpose (الهدف)</li>
+          <li>• Scope (النطاق)</li>
+          <li>• Exclusions (الاستثناءات)</li>
+          <li>• Stakeholders (أصحاب المصلحة)</li>
+          <li>• Roles (الأدوار)</li>
+          <li>• Decision Rights (صلاحيات القرار)</li>
+          <li>• Communication (التواصل)</li>
+        </ul>
+      </div>
+      <div class="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-xl border border-purple-200 dark:border-purple-800">
+        <div class="font-bold text-purple-700 dark:text-purple-300 text-sm mb-2">🪜 PROCESS BASELINE</div>
+        <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-300">
+          <li>• Plan (خطط)</li>
+          <li>• Design (صمم)</li>
+          <li>• Build (ابنِ)</li>
+          <li>• Test (اختبر)</li>
+          <li>• Release (أصدر)</li>
+        </ul>
+      </div>
+      <div class="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-4 rounded-xl border border-fuchsia-200 dark:border-fuchsia-800">
+        <div class="font-bold text-fuchsia-700 dark:text-fuchsia-300 text-sm mb-2">🚦 CONTROLS</div>
+        <ul class="text-xs space-y-1 text-slate-600 dark:text-slate-300">
+          <li>• Feedback (تغذية راجعة)</li>
+          <li>• Evidence (أدلة)</li>
+          <li>• Quality Gates (بوابات الجودة)</li>
+          <li>• Change Control (ضبط التغيير)</li>
+          <li>• Release Decision (قرار الإصدار)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row items-center gap-3 mt-5">
+      <div class="flex-1 text-center text-xs text-slate-500">الميثاق + خط الأساس + الضوابط</div>
+      <div class="text-3xl font-black text-indigo-400">←</div>
+      <div class="flex-1 bg-gradient-to-l from-indigo-600 via-purple-600 to-fuchsia-600 text-white p-4 rounded-xl text-center font-bold text-sm">
+        ✨ خطة واحدة كاملة:<br>Project Charter + Process Baseline
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD ORDERING APP CHALLENGE -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">OPTIONAL HANDS-ON</div>
+    <h3 class="text-xl font-bold mb-3">🍽️ تحدي تطبيق طلبات الطعام (Food Ordering App)</h3>
+    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">الزبون يختار وجبة وشراب ثم يدفع أونلاين. <b>أكواد الخصم خارجة (OUT) للحين</b>. مدير المطعم يوافق على التغييرات الكبيرة والإصدار النهائي.</p>
+    <div class="space-y-3">
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> ① CHARTER — أسئلة الميثاق</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs"><b>الأسئلة:</b> وش هدف التطبيق؟ سمِّ شيء واحد خارج النطاق. مين يبني التطبيق؟ مين يختبره؟</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الإجابات:</p>
+          <p class="text-xs">الهدف: تطبيق يخلّي الزبون يطلب وجبة وشراب ويدفع أونلاين بسهولة. خارج النطاق: <b>أكواد الخصم</b> 🚫. يبنيه: <b>فريق التطوير</b>. يختبره: <b>فريق الاختبار (Tester)</b>.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> ② MAP — رتّب المراحل</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs"><b>السؤال:</b> رتّب: Verify, Discover, Release, Build, Design</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: <span dir="ltr">Discover → Design → Build → Verify → Release</span></p>
+          <p class="text-xs">لو وجد الـ <b>Verify</b> خطأ برمجياً، وين يروح الشغل؟ → <b>يرجع لـ Build</b> عشان يُصلح، ثم يُعاد التحقق 🔁</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> ③ CHECK BEFORE RELEASE — افحص قبل الإصدار</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs"><b>السؤال:</b> التطبيق جاهز، لكن الطلب لم يُختبر. تصدر أو تمسك؟</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: Hold (امسك) ✋</p>
+          <p class="text-xs">وش لازم يُختبر؟ <b>عملية الطلب كاملة</b> (اختيار، دفع، تأكيد). وش الدليل اللي يُحفَظ؟ <b>نتائج الاختبارات (test results)</b> كأدلة (Evidence) 📦</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> ④ THE PROJECT CHANGES — المشروع تغيّر</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs"><b>السؤال:</b> المطعم يطلب إضافة "إلغاء الطلب". نبنيها الحين؟</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: لا — راجِع أولاً 🛑</p>
+          <p class="text-xs">وش يراجع الفريق أولاً؟ <b>تأثيرها على النطاق (scope) والجدول (schedule)</b>. لو تمت الموافقة، وش يُحدَّث ويُسجَّل؟ <b>الميثاق + خط الأساس + سجل التتبع (trace record)</b> 📝</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- FINAL CHECK -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <div class="text-xs font-bold text-indigo-500 mb-1">FINAL CHECK</div>
+    <h3 class="text-xl font-bold mb-4">✅ الاختبار النهائي — سيناريوهات</h3>
+    <div class="space-y-3">
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السيناريو 1: الفريق اكتشف أن المدرسين ما يقدرون يسجلون الحضور صح. وش يسوون؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) أصدره ووثّقه / B) عطّل الميزة / C) أصلح واختبر مرة ثانية / D) تقبّل المخاطرة</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: C — Fix and test again</p>
+          <p class="text-xs">العيب يُصلح ثم يُعاد اختباره قبل أي إصدار — لا تصدر شيئاً معطوباً.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السيناريو 2: طالب يطلب إضافة ميزة الدرجات، مو ضمن النطاق الأصلي. وش يسوون الفريق؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) أضفها الحين / B) راجع تأثيرها / C) خبّرها لوقت لاحق / D) ارفضها</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: B — Review its impact</p>
+          <p class="text-xs">أي طلب خارج النطاق يُدرَس تأثيره على النطاق والجدول أولاً، ثم يُتخذ القرار.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السيناريو 3: الفريق عنده Tester، بس محدداً مين يقدر يوافق على الإصدار النهائي. وش ناقص؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) ملكية المخرجات / B) واجب المراجعة / C) صلاحيات القرار / D) خطة التواصل</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: C — Decision Rights</p>
+          <p class="text-xs">"مين يوافق على الإصدار" = <b>Decision Right</b> — حق اتخاذ قرار المشروع.</p>
+        </div>
+      </details>
+      <details class="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+        <summary class="font-bold text-sm"><span class="arr">▶</span> السيناريو 4: الفريق يبي ينتقل من Testing إلى Release. وش لازم يكون عندهم أولاً؟</summary>
+        <div class="mt-3 text-sm space-y-2 text-slate-600 dark:text-slate-300">
+          <p class="text-xs">A) دليل البوابة كامل / B) كل الميزات خلصت / C) الكل يوافق / D) ما فيه تغييرات مستقبلية</p>
+          <p class="text-emerald-600 dark:text-emerald-400 font-bold">✅ الجواب: A — Gate evidence is complete</p>
+          <p class="text-xs">الانتقال بين المراحل يحتاج <b>أدلة (Evidence)</b> تثبت جاهزية العمل — وليس مجرد اكتمال الميزات.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- EXAM TRICKS -->
+  <section class="bg-gradient-to-l from-amber-400 to-orange-500 text-white rounded-2xl p-6 shadow-xl">
+    <h3 class="text-xl font-bold mb-4">🔥 حيل الاختبار (Exam Hacks)</h3>
+    <div class="space-y-2 text-sm">
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "who approves", "who has the authority" → <b>الجواب: Decision Right</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "what's in and out", "excluded from the project" → <b>الجواب: Scope</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "check before moving forward", "requires evidence" → <b>الجواب: Quality Gate</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "making the software available to users" → <b>الجواب: Release</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "a document or work product" → <b>الجواب: Artefact</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "the agreed way to do the work" → <b>الجواب: Process Baseline</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "the team's operating agreement", "agreed guide for how the project runs" → <b>الجواب: Project Charter</b></div>
+      <div class="bg-white/15 p-3 rounded-lg"><b>إذا شفت:</b> "information that helps improve the work" → <b>الجواب: Feedback</b></div>
+    </div>
+  </section>
+
+  <!-- KEY TERMS -->
+  <section class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-md">
+    <h3 class="text-xl font-bold mb-4">📖 المصطلحات الأساسية (Key Terms)</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse">
+        <thead><tr class="bg-indigo-600 text-white text-xs"><th class="p-2 text-right">English Term</th><th class="p-2 text-right">بالعربي</th><th class="p-2 text-right">Simple Definition</th></tr></thead>
+        <tbody class="text-xs">
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Project Charter</td><td class="p-2">ميثاق المشروع</td><td class="p-2 text-slate-500 dark:text-slate-400">An agreement about the project.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Scope</td><td class="p-2">نطاق المشروع</td><td class="p-2 text-slate-500 dark:text-slate-400">What the project includes and does not include.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Stakeholder</td><td class="p-2">صاحب مصلحة</td><td class="p-2 text-slate-500 dark:text-slate-400">A person involved in or affected by the project.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Role</td><td class="p-2">الدور</td><td class="p-2 text-slate-500 dark:text-slate-400">A person's job in the team.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Process Baseline</td><td class="p-2">خط أساس العملية</td><td class="p-2 text-slate-500 dark:text-slate-400">The agreed way to do the work.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Quality Gate</td><td class="p-2">بوابة الجودة</td><td class="p-2 text-slate-500 dark:text-slate-400">A check before moving forward.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Feedback</td><td class="p-2">التغذية الراجعة</td><td class="p-2 text-slate-500 dark:text-slate-400">Information that helps improve the work.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Artefact</td><td class="p-2">مخرج العمل</td><td class="p-2 text-slate-500 dark:text-slate-400">A document or work product created by the team.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Evidence</td><td class="p-2">الدليل</td><td class="p-2 text-slate-500 dark:text-slate-400">Information that shows the work is ready.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Decision Right</td><td class="p-2">صلاحية اتخاذ القرار</td><td class="p-2 text-slate-500 dark:text-slate-400">The right to make a project decision.</td></tr>
+          <tr class="border-b border-slate-200 dark:border-slate-800"><td class="p-2 font-bold">Adapt</td><td class="p-2">التكيّف / التعديل</td><td class="p-2 text-slate-500 dark:text-slate-400">Change the process when needed.</td></tr>
+          <tr><td class="p-2 font-bold">Release</td><td class="p-2">الإصدار</td><td class="p-2 text-slate-500 dark:text-slate-400">Making the software available to users.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="flex justify-between items-center pt-4">
+    <a href="index.html" class="text-indigo-600 dark:text-indigo-400 text-sm font-bold">→ الرجوع للرئيسية</a>
+    <a href="class4.html" class="bg-indigo-600 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-700 transition">الدرس التالي: Class 4 ←</a>
+  </div>
+
+</main>
+
+<script>
+if(localStorage.getItem('theme')==='dark'||(!('theme' in localStorage)&&window.matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark');
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙'}
+if(document.documentElement.classList.contains('dark'))document.getElementById('theme-icon').textContent=document.documentElement.classList.contains('dark')?'☀️':'🌙';
+</script>
+</body>
+</html>
